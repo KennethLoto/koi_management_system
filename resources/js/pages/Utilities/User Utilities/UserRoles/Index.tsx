@@ -22,27 +22,29 @@ import EditUserForm from './Edit';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Users',
-        href: '/user',
+        title: 'Utilities',
+        href: '/utilities',
+    },
+
+    {
+        title: 'UserRoles',
+        href: '/userRoles',
     },
 ];
 
-interface User {
+interface UserRole {
     id: number;
-    name: string;
-    email: string;
     role: string;
 }
 
 interface Flash {
-    success: string;
-    error: string;
+    success?: string;
+    error?: string;
 }
 
-export default function Index({ users }: { users: User[] }) {
-    // Handle Flash Messages
+export default function Index({ userRoles }: { userRoles: UserRole[] }) {
+    // Flash message toast
     const { flash } = usePage<{ flash: Flash }>().props;
-
     useEffect(() => {
         if (flash.success) {
             toast.success(flash.success);
@@ -50,39 +52,38 @@ export default function Index({ users }: { users: User[] }) {
         if (flash.error) {
             toast.error(flash.error);
         }
-    }, [flash]);
+    }, [flash.success, flash.error]);
 
-    // Handle Delete Alert-Dialog
+    // Handel Delete Alert-Dialog
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const [deleteUserId, setDeleteUserId] = useState<number | null>(null);
+    const [deleteUserRoleId, setDeleteUserRoleId] = useState<number | null>(null);
 
-    const handleDeleteClick = (userId: number) => {
-        setDeleteUserId(userId);
+    const handleDeleteClick = (userRoleId: number) => {
+        setDeleteUserRoleId(userRoleId);
         setDeleteDialogOpen(true);
     };
 
-    const handleDeleteConfirm = () => {
-        router.delete(`/users/${deleteUserId}`);
+    const handleDeleteCOnfirm = () => {
+        router.delete(`userRoles/${deleteUserRoleId}`);
         setDeleteDialogOpen(false);
     };
 
     // Handle Edit and Create Dialog
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [editingUser, setEditingUser] = useState<User | null>(null);
+    const [editingUser, setEditingUser] = useState<UserRole | null>(null);
 
-    const handleEditClick = (user: User) => {
+    const handleEditClick = (user: UserRole) => {
         setEditingUser(user);
         setIsDialogOpen(true);
     };
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Users" />
+            <Head title="UserRoles" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Users</h2>
+                            <h2 className="text-lg font-bold">UserRoles</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button variant="link">Add</Button>
@@ -109,29 +110,33 @@ export default function Index({ users }: { users: User[] }) {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead className="w-[100px]">#</TableHead>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Email</TableHead>
                                         <TableHead>Role</TableHead>
                                         <TableHead>Action</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {users.map((user, id) => (
-                                        <TableRow key={user.id}>
-                                            <TableCell className="font-medium">{id + 1}</TableCell>
-                                            <TableCell>{user.name}</TableCell>
-                                            <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.role}</TableCell>
-                                            <TableCell>
-                                                <Button variant="link" onClick={() => handleEditClick(user)}>
-                                                    Edit
-                                                </Button>
-                                                <Button variant="link" className="text-red-500" onClick={() => handleDeleteClick(user.id)}>
-                                                    Delete
-                                                </Button>
+                                    {userRoles.length > 0 ? (
+                                        userRoles.map((userRole, id) => (
+                                            <TableRow key={userRole.id}>
+                                                <TableCell className="font-medium">{id + 1}</TableCell>
+                                                <TableCell>{userRole.role}</TableCell>
+                                                <TableCell>
+                                                    <Button variant="link" onClick={() => handleEditClick(userRole)}>
+                                                        Edit
+                                                    </Button>
+                                                    <Button variant="link" className="text-red-500" onClick={() => handleDeleteClick(userRole.id)}>
+                                                        Delete
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
+                                    ) : (
+                                        <TableRow>
+                                            <TableCell colSpan={3} className="text-muted-foreground pt-6 text-center">
+                                                No roles found.
                                             </TableCell>
                                         </TableRow>
-                                    ))}
+                                    )}
                                 </TableBody>
                             </Table>
                         </CardContent>
@@ -146,7 +151,7 @@ export default function Index({ users }: { users: User[] }) {
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
+                                <AlertDialogAction onClick={handleDeleteCOnfirm}>Continue</AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>

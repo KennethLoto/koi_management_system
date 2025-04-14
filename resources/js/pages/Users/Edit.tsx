@@ -90,11 +90,11 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
             <Button type="submit" disabled={processing} className="float-end">
                 {processing ? (
                     <>
-                        <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                        <LoaderCircle className="h-4 w-4 animate-spin" />
                         Updating...
                     </>
                 ) : (
-                    'Update User'
+                    'Update'
                 )}
             </Button>
         </form>

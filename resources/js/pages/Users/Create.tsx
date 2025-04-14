@@ -94,7 +94,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                         Adding...
                     </>
                 ) : (
-                    'Add User'
+                    'Add'
                 )}
             </Button>
         </form>

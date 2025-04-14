@@ -18,7 +18,7 @@ export default function Index() {
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                     <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
                         <h1>User Utilities</h1>
-                        <Link href="/utilities/user/role" prefetch>
+                        <Link href="/utilities/userUtilities/userRoles" prefetch>
                             <Button variant="link">User Roles</Button>
                         </Link>
                     </div>
