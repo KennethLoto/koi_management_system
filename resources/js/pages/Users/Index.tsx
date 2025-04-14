@@ -139,7 +139,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                                             <TableCell className="font-medium">{id + 1}</TableCell>
                                             <TableCell>{user.name}</TableCell>
                                             <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.role?.role}</TableCell>
+                                            <TableCell>{user.role?.role || 'No role'}</TableCell>
                                             <TableCell>
                                                 <Button variant="link" onClick={() => handleEditClick(user)}>
                                                     Edit

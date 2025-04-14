@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role'); // remove string role
-            $table->foreignUuid('role_id')->after('password')->constrained('user_roles')->onDelete('cascade');
+            $table->foreignUuid('role_id')->nullable()->after('password')->constrained('user_roles')->onDelete('set null');
         });
     }
 
