@@ -1,24 +1,14 @@
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import DeleteUserAlert from '@/components/User/DeleteUserAlert';
+import UserDialog from '@/components/User/UserDialog';
+import UserTable from '@/components/User/UserTable';
+import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, router, usePage } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import CreateUserForm from './Create';
-import EditUserForm from './Edit';
+import { Head, router } from '@inertiajs/react';
+import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -38,25 +28,10 @@ interface User {
     };
 }
 
-interface Flash {
-    success: string;
-    error: string;
-}
-
 export default function Index({ users, userRoles }: { users: User[]; userRoles: any[] }) {
-    // Handle Flash Messages
-    const { flash } = usePage<{ flash: Flash }>().props;
+    useFlashMessage();
 
-    useEffect(() => {
-        if (flash.success) {
-            toast.success(flash.success);
-        }
-        if (flash.error) {
-            toast.error(flash.error);
-        }
-    }, [flash]);
-
-    // Handle Delete Alert-Dialog
+    // Delete Dialog State
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [deleteUserId, setDeleteUserId] = useState<number | null>(null);
 
@@ -66,11 +41,13 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
     };
 
     const handleDeleteConfirm = () => {
-        router.delete(`/users/${deleteUserId}`);
+        if (deleteUserId) {
+            router.delete(`/users/${deleteUserId}`);
+        }
         setDeleteDialogOpen(false);
     };
 
-    // Handle Edit and Create Dialog
+    // Add/Edit Dialog State
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
@@ -98,76 +75,22 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                                         Add
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="sm:max-w-[500px]">
-                                    <DialogHeader>
-                                        <DialogTitle>{editingUser ? 'Edit' : 'Add'} User</DialogTitle>
-                                        <DialogDescription>
-                                            {editingUser
-                                                ? 'Update the user information below. Click update when you’re done.'
-                                                : 'Fill in the form to add a new user. Click add to proceed.'}
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    {editingUser ? (
-                                        <EditUserForm
-                                            user={editingUser}
-                                            userRoles={userRoles}
-                                            onSuccess={() => {
-                                                setIsDialogOpen(false);
-                                                setEditingUser(null);
-                                            }}
-                                        />
-                                    ) : (
-                                        <CreateUserForm userRoles={userRoles} onSuccess={() => setIsDialogOpen(false)} />
-                                    )}
-                                </DialogContent>
+                                <UserDialog
+                                    editingUser={editingUser}
+                                    userRoles={userRoles}
+                                    onClose={() => {
+                                        setIsDialogOpen(false);
+                                        setEditingUser(null);
+                                    }}
+                                />
                             </Dialog>
                         </CardHeader>
                         <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead className="w-[100px]">#</TableHead>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Email</TableHead>
-                                        <TableHead>Role</TableHead>
-                                        <TableHead>Action</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {users.map((user, id) => (
-                                        <TableRow key={user.id}>
-                                            <TableCell className="font-medium">{id + 1}</TableCell>
-                                            <TableCell>{user.name}</TableCell>
-                                            <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.role?.role || 'No role'}</TableCell>
-                                            <TableCell>
-                                                <Button variant="link" onClick={() => handleEditClick(user)}>
-                                                    Edit
-                                                </Button>
-                                                <Button variant="link" className="text-red-500" onClick={() => handleDeleteClick(user.id)}>
-                                                    Delete
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                            <UserTable users={users} onEdit={handleEditClick} onDelete={handleDeleteClick} />
                         </CardContent>
                     </Card>
-                    <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-                        <AlertDialogContent>
-                            <AlertDialogHeader>
-                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialog>
+
+                    <DeleteUserAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
                 </div>
             </div>
         </AppLayout>
