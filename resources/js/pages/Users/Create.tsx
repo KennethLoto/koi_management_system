@@ -26,17 +26,24 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="Name" className="text-right">
+                    <Label htmlFor="name" className="text-right">
                         Name
                     </Label>
                     <div className="col-span-3 space-y-1">
-                        <Input id="name" type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} className="w-full" />
+                        <Input
+                            id="name"
+                            type="text"
+                            value={data.name}
+                            autoComplete="name"
+                            onChange={(e) => setData('name', e.target.value)}
+                            className="w-full"
+                        />
                         {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                 </div>
 
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="Password" className="text-right">
+                    <Label htmlFor="password" className="text-right">
                         Password
                     </Label>
                     <div className="col-span-3 space-y-1">
@@ -44,6 +51,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                             id="password"
                             type="password"
                             value={data.password}
+                            autoComplete="new-password"
                             onChange={(e) => setData('password', e.target.value)}
                             required
                             className="w-full"
@@ -53,7 +61,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                 </div>
 
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="Email" className="text-right">
+                    <Label htmlFor="email" className="text-right">
                         Email
                     </Label>
                     <div className="col-span-3 space-y-1">
@@ -61,6 +69,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                             id="email"
                             type="email"
                             value={data.email}
+                            autoComplete="email"
                             onChange={(e) => setData('email', e.target.value)}
                             required
                             className="w-full"
@@ -70,7 +79,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                 </div>
 
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="Role" className="text-right">
+                    <Label htmlFor="role" className="text-right">
                         Role
                     </Label>
                     <div className="col-span-3 space-y-1">
@@ -78,6 +87,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                             id="role"
                             type="text"
                             value={data.role}
+                            autoComplete="on"
                             onChange={(e) => setData('role', e.target.value)}
                             required
                             className="w-full"

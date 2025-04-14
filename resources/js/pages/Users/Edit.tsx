@@ -31,7 +31,15 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
                         Name
                     </Label>
                     <div className="col-span-3 space-y-1">
-                        <Input id="name" type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} className="w-full" />
+                        <Input
+                            id="name"
+                            type="text"
+                            autoComplete="name"
+                            autoFocus
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
+                            className="w-full"
+                        />
                         {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                 </div>
@@ -44,6 +52,7 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
                         <Input
                             id="password"
                             type="password"
+                            autoComplete="new-password"
                             value={data.password}
                             onChange={(e) => setData('password', e.target.value)}
                             className="w-full"
@@ -60,6 +69,7 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
                         <Input
                             id="email"
                             type="email"
+                            autoComplete="email"
                             value={data.email}
                             onChange={(e) => setData('email', e.target.value)}
                             required
@@ -77,6 +87,7 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
                         <Input
                             id="role"
                             type="text"
+                            autoComplete="on"
                             value={data.role}
                             onChange={(e) => setData('role', e.target.value)}
                             required

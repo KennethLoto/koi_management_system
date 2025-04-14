@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
@@ -75,6 +75,11 @@ export default function Index({ users }: { users: User[] }) {
         setIsDialogOpen(true);
     };
 
+    const handleAddClick = () => {
+        setEditingUser(null);
+        setIsDialogOpen(true);
+    };
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Users" />
@@ -85,17 +90,25 @@ export default function Index({ users }: { users: User[] }) {
                             <h2 className="text-lg font-bold">Users</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link">Add</Button>
+                                    <Button variant="link" onClick={handleAddClick}>
+                                        Add
+                                    </Button>
                                 </DialogTrigger>
                                 <DialogContent className="sm:max-w-[500px]">
                                     <DialogHeader>
-                                        <DialogTitle>{editingUser ? 'Edit' : 'Add'}</DialogTitle>
+                                        <DialogTitle>{editingUser ? 'Edit' : 'Add'} User</DialogTitle>
+                                        <DialogDescription>
+                                            {editingUser
+                                                ? 'Update the user information below. Click update when you’re done.'
+                                                : 'Fill in the form to add a new user. Click add to proceed.'}
+                                        </DialogDescription>
                                     </DialogHeader>
                                     {editingUser ? (
                                         <EditUserForm
                                             user={editingUser}
                                             onSuccess={() => {
                                                 setIsDialogOpen(false);
+                                                setEditingUser(null);
                                             }}
                                         />
                                     ) : (
