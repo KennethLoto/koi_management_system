@@ -4,12 +4,12 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function CreateUserForm({ onSuccess }: { onSuccess: () => void }) {
+export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: () => void; userRoles: { id: number; role: string }[] }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
         password: '',
-        role: '',
+        role_id: '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -83,16 +83,23 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                         Role
                     </Label>
                     <div className="col-span-3 space-y-1">
-                        <Input
+                        <select
                             id="role"
-                            type="text"
-                            value={data.role}
-                            autoComplete="on"
-                            onChange={(e) => setData('role', e.target.value)}
+                            value={data.role_id}
+                            onChange={(e) => setData('role_id', e.target.value)}
+                            className="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm"
                             required
-                            className="w-full"
-                        />
-                        {errors.role && <p className="text-sm text-red-500">{errors.role}</p>}
+                        >
+                            <option value="" disabled hidden selected>
+                                Select a role
+                            </option>
+                            {userRoles.map((role) => (
+                                <option key={role.id} value={role.id}>
+                                    {role.role}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.role_id && <p className="text-sm text-red-500">{errors.role_id}</p>}
                     </div>
                 </div>
             </div>

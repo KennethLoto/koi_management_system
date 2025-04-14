@@ -31,7 +31,11 @@ interface User {
     id: number;
     name: string;
     email: string;
-    role: string;
+    role_id: number;
+    role?: {
+        id: number;
+        role: string;
+    };
 }
 
 interface Flash {
@@ -39,7 +43,7 @@ interface Flash {
     error: string;
 }
 
-export default function Index({ users }: { users: User[] }) {
+export default function Index({ users, userRoles }: { users: User[]; userRoles: any[] }) {
     // Handle Flash Messages
     const { flash } = usePage<{ flash: Flash }>().props;
 
@@ -106,13 +110,14 @@ export default function Index({ users }: { users: User[] }) {
                                     {editingUser ? (
                                         <EditUserForm
                                             user={editingUser}
+                                            userRoles={userRoles}
                                             onSuccess={() => {
                                                 setIsDialogOpen(false);
                                                 setEditingUser(null);
                                             }}
                                         />
                                     ) : (
-                                        <CreateUserForm onSuccess={() => setIsDialogOpen(false)} />
+                                        <CreateUserForm userRoles={userRoles} onSuccess={() => setIsDialogOpen(false)} />
                                     )}
                                 </DialogContent>
                             </Dialog>
@@ -134,7 +139,7 @@ export default function Index({ users }: { users: User[] }) {
                                             <TableCell className="font-medium">{id + 1}</TableCell>
                                             <TableCell>{user.name}</TableCell>
                                             <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.role}</TableCell>
+                                            <TableCell>{user.role?.role}</TableCell>
                                             <TableCell>
                                                 <Button variant="link" onClick={() => handleEditClick(user)}>
                                                     Edit

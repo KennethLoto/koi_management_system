@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserRole>
@@ -17,10 +18,8 @@ class UserRoleFactory extends Factory
      */
     public function definition(): array
     {
-        $roles = ['SuperAdmin', 'Koi Keeper', 'Sales Manager', 'Veterinarian', 'Guest'];
-
         return [
-            'role' => Arr::random($roles),
+            'role' => fake()->jobTitle(), // use this only for generic, non-unique roles
         ];
     }
 }

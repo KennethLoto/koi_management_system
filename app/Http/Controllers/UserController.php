@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,9 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
         return inertia('Users/Index', [
-            'users' => $users,
+            'users' => User::with('role')->get(),
+            'userRoles' => UserRole::all(),
         ]);
     }
 
@@ -30,9 +31,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request, User $user)
     {
-        $validated = $request->validated();
-
-        User::create($validated);
+        User::create($request->validated());
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 

@@ -14,30 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        // User::factory(20)->create();
 
+        // Seed user roles first, ensure they exist in the database
+        // Manually create unique roles
+        $roles = ['SuperAdmin', 'Koi Keeper', 'Sales Manager', 'Veterinarian', 'Guest'];
+
+        foreach ($roles as $role) {
+            UserRole::firstOrCreate(['role' => $role]);
+        }
+
+        // Get the SuperAdmin role
+        $superAdmin = UserRole::where('role', 'SuperAdmin')->first();
+
+        // Create one user and assign the SuperAdmin role
         User::factory()->create([
             'name' => 'Kenzu',
             'email' => 'kenzu@example.com',
             'password' => '1234567890',
             'email_verified_at' => now(),
-            'role' => 'SuperAdmin'
-        ]);
-
-        UserRole::factory()->create([
-            'role' => 'SuperAdmin'
-        ]);
-        UserRole::factory()->create([
-            'role' => 'Koi Keeper'
-        ]);
-        UserRole::factory()->create([
-            'role' => 'Sales Manager'
-        ]);
-        UserRole::factory()->create([
-            'role' => 'Veterinarian'
-        ]);
-        UserRole::factory()->create([
-            'role' => 'Guest'
+            'role_id' => $superAdmin->id,
         ]);
     }
 }
