@@ -30,6 +30,7 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                         <Input
                             id="role"
                             type="text"
+                            autoComplete="on"
                             value={data.role}
                             onChange={(e) => setData('role', e.target.value)}
                             required

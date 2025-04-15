@@ -14,7 +14,7 @@ class UserRoleController extends Controller
     public function index()
     {
         $userRoles = UserRole::all();
-        return inertia('Utilities/User Utilities/UserRoles/Index', [
+        return inertia('Utilities/UserUtilities/UserRoles/Index', [
             'userRoles' => $userRoles,
         ]);
     }

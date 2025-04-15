@@ -1,6 +1,6 @@
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import CreateUserForm from '../../pages/Users/Create';
-import EditUserForm from '../../pages/Users/Edit';
+import CreateUserForm from '../../../pages/Users/Create';
+import EditUserForm from '../../../pages/Users/Edit';
 
 interface User {
     id: number;

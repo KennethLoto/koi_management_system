@@ -30,8 +30,10 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
                         <Input
                             id="role"
                             type="text"
+                            autoFocus
                             value={data.role}
                             onChange={(e) => setData('role', e.target.value)}
+                            autoComplete="on"
                             required
                             className="w-full"
                         />
