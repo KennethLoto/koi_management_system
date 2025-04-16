@@ -12,6 +12,6 @@ class UserRole extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'role',
+        'user_role',
     ];
 }

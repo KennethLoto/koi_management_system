@@ -19,7 +19,7 @@ class UserRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'role' => fake()->name(), 
+            'user_role' => fake()->name(),
         ];
     }
 }

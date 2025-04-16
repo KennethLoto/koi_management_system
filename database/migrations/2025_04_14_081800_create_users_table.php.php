@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role');
+            $table->foreignUuid('role_id')->nullable()->constrained('user_roles')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->string('email')->primary(); 
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });

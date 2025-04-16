@@ -6,7 +6,7 @@ import { LoaderCircle } from 'lucide-react';
 
 export default function CreateUserForm({ onSuccess }: { onSuccess: () => void }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        role: '',
+        user_role: '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -23,20 +23,20 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right">
-                        Role
+                    <Label htmlFor="user_role" className="text-right">
+                        User Role
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="role"
+                            id="user_role"
                             type="text"
                             autoComplete="on"
-                            value={data.role}
-                            onChange={(e) => setData('role', e.target.value)}
+                            value={data.user_role}
+                            onChange={(e) => setData('user_role', e.target.value)}
                             required
                             className="w-full"
                         />
-                        {errors.role && <p className="text-sm text-red-500">{errors.role}</p>}
+                        {errors.user_role && <p className="text-sm text-red-500">{errors.user_role}</p>}
                     </div>
                 </div>
             </div>

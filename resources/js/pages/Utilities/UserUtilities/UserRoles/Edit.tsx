@@ -7,7 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 export default function EditUserForm({ userRole, onSuccess }: { userRole: any; onSuccess: () => void }) {
     const { data, setData, put, processing, errors, reset } = useForm({
         id: userRole.id,
-        role: userRole.role,
+        user_role: userRole.user_role,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -24,21 +24,21 @@ export default function EditUserForm({ userRole, onSuccess }: { userRole: any; o
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right">
-                        Role
+                    <Label htmlFor="user_role" className="text-right">
+                        User Role
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="role"
+                            id="user_role"
                             type="text"
                             autoFocus
-                            value={data.role}
-                            onChange={(e) => setData('role', e.target.value)}
+                            value={data.user_role}
+                            onChange={(e) => setData('user_role', e.target.value)}
                             autoComplete="on"
                             required
                             className="w-full"
                         />
-                        {errors.role && <p className="text-sm text-red-500">{errors.role}</p>}
+                        {errors.user_role && <p className="text-sm text-red-500">{errors.user_role}</p>}
                     </div>
                 </div>
             </div>

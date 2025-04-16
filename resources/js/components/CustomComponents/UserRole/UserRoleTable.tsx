@@ -3,12 +3,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 interface UserRole {
     id: number;
-    role: string;
+    user_role: string;
 }
 
 interface UserRoleTableProps {
     userRoles: UserRole[];
-    onEdit: (role: UserRole) => void;
+    onEdit: (user_role: UserRole) => void;
     onDelete: (id: number) => void;
 }
 
@@ -27,7 +27,7 @@ export default function UserRoleTable({ userRoles, onEdit, onDelete }: UserRoleT
                     userRoles.map((userRole, i) => (
                         <TableRow key={userRole.id}>
                             <TableCell className="font-medium">{i + 1}</TableCell>
-                            <TableCell>{userRole.role}</TableCell>
+                            <TableCell>{userRole.user_role}</TableCell>
                             <TableCell>
                                 <Button variant="link" onClick={() => onEdit(userRole)}>
                                     Edit
