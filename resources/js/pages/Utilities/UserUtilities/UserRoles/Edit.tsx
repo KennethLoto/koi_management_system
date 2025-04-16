@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function EditUserForm({ userRole, onSuccess }: { userRole: any; onSuccess: () => void }) {
+export default function EditUserRoleForm({ userRole, onSuccess }: { userRole: any; onSuccess: () => void }) {
     const { data, setData, put, processing, errors, reset } = useForm({
         id: userRole.id,
         user_role: userRole.user_role,

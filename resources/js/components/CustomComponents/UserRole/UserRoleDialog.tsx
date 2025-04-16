@@ -1,10 +1,10 @@
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import CreateUserForm from '../../../pages/Utilities/UserUtilities/UserRoles/Create';
-import EditUserForm from '../../../pages/Utilities/UserUtilities/UserRoles/Edit';
+import CreateUserRoleForm from '../../../pages/Utilities/UserUtilities/UserRoles/Create';
+import EditUserRoleForm from '../../../pages/Utilities/UserUtilities/UserRoles/Edit';
 
 interface UserRole {
     id: number;
-    role: string;
+    user_role: string;
 }
 
 interface Props {
@@ -23,7 +23,7 @@ export default function UserRoleDialog({ editingUserRole, onClose }: Props) {
                         : 'Fill in the form to add a new user role. Click add to proceed.'}
                 </DialogDescription>
             </DialogHeader>
-            {editingUserRole ? <EditUserForm userRole={editingUserRole} onSuccess={onClose} /> : <CreateUserForm onSuccess={onClose} />}
+            {editingUserRole ? <EditUserRoleForm userRole={editingUserRole} onSuccess={onClose} /> : <CreateUserRoleForm onSuccess={onClose} />}
         </DialogContent>
     );
 }

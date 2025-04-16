@@ -12,12 +12,12 @@ import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Utilities', href: '/utilities' },
-    { title: 'UserRoles', href: '/userRoles' },
+    { title: 'User Roles', href: '/userRoles' },
 ];
 
 interface UserRole {
     id: number;
-    role: string;
+    user_role: string;
 }
 
 export default function Index({ userRoles }: { userRoles: UserRole[] }) {
@@ -62,7 +62,7 @@ export default function Index({ userRoles }: { userRoles: UserRole[] }) {
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">UserRoles</h2>
+                            <h2 className="text-lg font-bold">User Roles</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button variant="link" onClick={handleAddClick}>
