@@ -18,7 +18,7 @@ export default function UserRoleTable({ userRoles, onEdit, onDelete }: UserRoleT
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Role</TableHead>
+                    <TableHead>User Role</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
