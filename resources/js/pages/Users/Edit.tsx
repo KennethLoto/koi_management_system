@@ -96,7 +96,7 @@ export default function EditUserForm({ user, userRoles, onSuccess }: { user: any
                             </option>
                             {userRoles.map((role) => (
                                 <option key={role.id} value={role.id}>
-                                    {role.role}
+                                    {role.user_role}
                                 </option>
                             ))}
                         </select>

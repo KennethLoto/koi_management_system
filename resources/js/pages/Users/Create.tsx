@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: () => void; userRoles: { id: number; role: string }[] }) {
+export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: () => void; userRoles: { id: number; user_role: string }[] }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -87,7 +87,7 @@ export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: ()
                             id="role"
                             value={data.role_id}
                             onChange={(e) => setData('role_id', e.target.value)}
-                            className="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm"
+                            className="text-blackdark:border-gray-600 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm dark:bg-gray-800 dark:text-white"
                             required
                         >
                             <option value="" disabled hidden selected>
@@ -95,7 +95,7 @@ export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: ()
                             </option>
                             {userRoles.map((role) => (
                                 <option key={role.id} value={role.id}>
-                                    {role.role}
+                                    {role.user_role}
                                 </option>
                             ))}
                         </select>

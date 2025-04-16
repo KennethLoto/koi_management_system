@@ -6,9 +6,9 @@ interface User {
     name: string;
     email: string;
     role_id: number;
-    role?: {
+    user_role?: {
         id: number;
-        role: string;
+        user_role: string;
     };
 }
 
@@ -37,7 +37,7 @@ export default function UserTable({ users, onEdit, onDelete }: UserTableProps) {
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.role?.role || 'No role'}</TableCell>
+                            <TableCell>{user.user_role?.user_role || 'No role'}</TableCell>
                             <TableCell>
                                 <Button variant="link" onClick={() => onEdit(user)}>
                                     Edit
