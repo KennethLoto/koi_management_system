@@ -13,9 +13,6 @@ interface Pond {
     id: number;
     pond_id: string;
     capacity: number;
-    ph_level: number;
-    temperature: number;
-    ammonia_level: number;
     location_id: number;
     location?: {
         id: number;

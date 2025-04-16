@@ -23,9 +23,6 @@ class StorePondRequest extends FormRequest
     {
         return [
             'capacity' => 'required|integer|min:1',
-            'ph_level' => 'nullable|numeric|between:0,14',
-            'temperature' => 'nullable|numeric|min:0',
-            'ammonia_level' => 'nullable|numeric|min:0',
             'location_id' => 'required|string',
         ];
     }

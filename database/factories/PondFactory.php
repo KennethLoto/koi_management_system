@@ -23,12 +23,9 @@ class PondFactory extends Factory
 
         return [
             'id' => Str::uuid(),
-            'pond_id' => 'Pond ' . strtoupper(fake()->bothify('??#')), // e.g., Pond AB1
-            'capacity' => fake()->numberBetween(10, 100), // Number of koi it can hold
-            'ph_level' => fake()->randomFloat(2, 6.5, 8.5), // e.g., 7.25
-            'temperature' => fake()->randomFloat(2, 18, 28), // °C
-            'ammonia_level' => fake()->randomFloat(2, 0, 0.5), // ppm
-            'location_id' => $location->id, // nullable FK from locations table
+            'pond_id' => 'Pond ' . strtoupper(fake()->bothify('??#')),
+            'capacity' => fake()->numberBetween(10, 100),
+            'location_id' => $location->id,
         ];
     }
 }

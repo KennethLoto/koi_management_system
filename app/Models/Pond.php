@@ -17,9 +17,6 @@ class Pond extends Model
     protected $fillable = [
         'pond_id',
         'capacity',
-        'ph_level',
-        'temperature',
-        'ammonia_level',
         'location_id',
     ];
 

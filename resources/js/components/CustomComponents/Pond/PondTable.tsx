@@ -5,9 +5,6 @@ interface Pond {
     id: number;
     pond_id: string;
     capacity: number;
-    ph_level: number;
-    temperature: number;
-    ammonia_level: number;
     location_id: number;
     location?: {
         id: number;
@@ -29,9 +26,6 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                     <TableHead className="w-[100px]">#</TableHead>
                     <TableHead>Pond ID</TableHead>
                     <TableHead>Capacity</TableHead>
-                    <TableHead>PH Level</TableHead>
-                    <TableHead>Temperature</TableHead>
-                    <TableHead>Ammonia Level</TableHead>
                     <TableHead>Location</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
@@ -43,9 +37,6 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{pond.pond_id}</TableCell>
                             <TableCell>{pond.capacity}</TableCell>
-                            <TableCell>{pond.ph_level}</TableCell>
-                            <TableCell>{pond.temperature}</TableCell>
-                            <TableCell>{pond.ammonia_level}</TableCell>
                             <TableCell>{pond.location?.location || 'No Location'}</TableCell>
                             <TableCell>
                                 <Button variant="link" onClick={() => onEdit(pond)}>

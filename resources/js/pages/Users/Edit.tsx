@@ -89,7 +89,7 @@ export default function EditUserForm({ user, userRoles, onSuccess }: { user: any
                             value={data.role_id}
                             onChange={(e) => setData('role_id', e.target.value)}
                             required
-                            className="w-full rounded-md border px-3 py-2 text-sm shadow-sm"
+                            className="text-blackdark:border-gray-600 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm dark:bg-gray-800 dark:text-white"
                         >
                             <option value="" disabled hidden selected>
                                 Select Role

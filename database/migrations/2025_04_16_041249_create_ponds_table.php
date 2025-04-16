@@ -15,9 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('pond_id')->unique();
             $table->integer('capacity');
-            $table->decimal('ph_level', 4, 2)->nullable();
-            $table->decimal('temperature', 4, 2)->nullable();
-            $table->decimal('ammonia_level', 4, 2)->nullable();
             $table->foreignUuid('location_id')->nullable()->constrained('locations')->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
