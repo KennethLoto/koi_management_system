@@ -48,6 +48,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
         setIsDialogOpen(true);
     };
 
+    // Add dialog state
     const handleAddClick = () => {
         setEditingUser(null);
         setIsDialogOpen(true);

@@ -1,5 +1,4 @@
-import { DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { DialogDescription } from '@radix-ui/react-dialog';
+import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import CreateUserForm from '../../../pages/Utilities/UserUtilities/UserRoles/Create';
 import EditUserForm from '../../../pages/Utilities/UserUtilities/UserRoles/Edit';
 
@@ -24,7 +23,7 @@ export default function UserRoleDialog({ editingUserRole, onClose }: Props) {
                         : 'Fill in the form to add a new user role. Click add to proceed.'}
                 </DialogDescription>
             </DialogHeader>
-            {editingUserRole ? <EditUserForm user={editingUserRole} onSuccess={onClose} /> : <CreateUserForm onSuccess={onClose} />}
+            {editingUserRole ? <EditUserForm userRole={editingUserRole} onSuccess={onClose} /> : <CreateUserForm onSuccess={onClose} />}
         </DialogContent>
     );
 }

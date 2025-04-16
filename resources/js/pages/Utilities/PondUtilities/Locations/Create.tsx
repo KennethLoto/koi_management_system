@@ -4,14 +4,14 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function CreateUserForm({ onSuccess }: { onSuccess: () => void }) {
+export default function CreateLocationForm({ onSuccess }: { onSuccess: () => void }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        role: '',
+        location: '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/userRoles', {
+        post('/locations', {
             onSuccess: () => {
                 reset();
                 onSuccess(); // closes the modal
@@ -23,20 +23,20 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right">
-                        Role
+                    <Label htmlFor="location" className="text-right">
+                        Location
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="role"
+                            id="location"
                             type="text"
                             autoComplete="on"
-                            value={data.role}
-                            onChange={(e) => setData('role', e.target.value)}
+                            value={data.location}
+                            onChange={(e) => setData('location', e.target.value)}
                             required
                             className="w-full"
                         />
-                        {errors.role && <p className="text-sm text-red-500">{errors.role}</p>}
+                        {errors.location && <p className="text-sm text-red-500">{errors.location}</p>}
                     </div>
                 </div>
             </div>

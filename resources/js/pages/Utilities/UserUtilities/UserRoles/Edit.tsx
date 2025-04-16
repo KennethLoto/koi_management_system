@@ -4,14 +4,15 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess: () => void }) {
+export default function EditUserForm({ userRole, onSuccess }: { userRole: any; onSuccess: () => void }) {
     const { data, setData, put, processing, errors, reset } = useForm({
-        role: user.role,
+        id: userRole.id,
+        role: userRole.role,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(`/userRoles/${user.id}`, {
+        put(`/userRoles/${userRole.id}`, {
             onSuccess: () => {
                 reset();
                 onSuccess();
@@ -23,7 +24,7 @@ export default function EditUserForm({ user, onSuccess }: { user: any; onSuccess
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="Role" className="text-right">
+                    <Label htmlFor="role" className="text-right">
                         Role
                     </Label>
                     <div className="col-span-3 space-y-1">

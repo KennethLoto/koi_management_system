@@ -32,9 +32,9 @@ export default function UserTable({ users, onEdit, onDelete }: UserTableProps) {
             </TableHeader>
             <TableBody>
                 {users.length > 0 ? (
-                    users.map((user, id) => (
+                    users.map((user, i) => (
                         <TableRow key={user.id}>
-                            <TableCell className="font-medium">{id + 1}</TableCell>
+                            <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>{user.role?.role || 'No role'}</TableCell>

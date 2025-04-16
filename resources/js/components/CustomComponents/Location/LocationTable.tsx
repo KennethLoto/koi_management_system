@@ -1,38 +1,38 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-interface UserRole {
+interface Location {
     id: number;
-    role: string;
+    location: string;
 }
 
-interface UserRoleTableProps {
-    userRoles: UserRole[];
-    onEdit: (role: UserRole) => void;
+interface LocationTableProps {
+    locations: Location[];
+    onEdit: (location: Location) => void;
     onDelete: (id: number) => void;
 }
 
-export default function UserRoleTable({ userRoles, onEdit, onDelete }: UserRoleTableProps) {
+export default function LocationTable({ locations, onEdit, onDelete }: LocationTableProps) {
     return (
         <Table>
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Role</TableHead>
+                    <TableHead>Locations</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {userRoles.length > 0 ? (
-                    userRoles.map((userRole, i) => (
-                        <TableRow key={userRole.id}>
+                {locations.length > 0 ? (
+                    locations.map((location, i) => (
+                        <TableRow key={location.id}>
                             <TableCell className="font-medium">{i + 1}</TableCell>
-                            <TableCell>{userRole.role}</TableCell>
+                            <TableCell>{location.location}</TableCell>
                             <TableCell>
-                                <Button variant="link" onClick={() => onEdit(userRole)}>
+                                <Button variant="link" onClick={() => onEdit(location)}>
                                     Edit
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(userRole.id)}>
+                                <Button variant="link" className="text-red-500" onClick={() => onDelete(location.id)}>
                                     Delete
                                 </Button>
                             </TableCell>
@@ -41,7 +41,7 @@ export default function UserRoleTable({ userRoles, onEdit, onDelete }: UserRoleT
                 ) : (
                     <TableRow>
                         <TableCell colSpan={3} className="text-muted-foreground pt-6 text-center">
-                            No roles found.
+                            No location found.
                         </TableCell>
                     </TableRow>
                 )}

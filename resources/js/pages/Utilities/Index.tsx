@@ -34,7 +34,7 @@ export default function Index() {
                                 {/* Card 1 */}
                                 <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">
                                     <h2 className="mb-2 text-lg font-semibold">User Utilities</h2>
-                                    <Link href="/utilities/userUtilities/userRoles" prefetch>
+                                    <Link href="userRoles" prefetch>
                                         <Button variant="outline" className="w-full">
                                             User Roles
                                         </Button>
@@ -42,7 +42,12 @@ export default function Index() {
                                 </div>
 
                                 <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">
-                                    <h2 className="mb-2 text-lg font-semibold">Upcoming Utilities</h2>
+                                    <h2 className="mb-2 text-lg font-semibold">Pond Utilities</h2>
+                                    <Link href="locations" prefetch>
+                                        <Button variant="outline" className="w-full">
+                                            Locations
+                                        </Button>
+                                    </Link>
                                 </div>
 
                                 <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">

@@ -4,17 +4,18 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function CreateUserForm({ onSuccess }: { onSuccess: () => void }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        role: '',
+export default function EditLocationForm({ location, onSuccess }: { location: any; onSuccess: () => void }) {
+    const { data, setData, put, processing, errors, reset } = useForm({
+        id: location.id,
+        location: location.location,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/userRoles', {
+        put(`/locations/${location.id}`, {
             onSuccess: () => {
                 reset();
-                onSuccess(); // closes the modal
+                onSuccess();
             },
         });
     };
@@ -23,20 +24,21 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right">
-                        Role
+                    <Label htmlFor="location" className="text-right">
+                        Locations
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="role"
+                            id="location"
                             type="text"
+                            autoFocus
+                            value={data.location}
+                            onChange={(e) => setData('location', e.target.value)}
                             autoComplete="on"
-                            value={data.role}
-                            onChange={(e) => setData('role', e.target.value)}
                             required
                             className="w-full"
                         />
-                        {errors.role && <p className="text-sm text-red-500">{errors.role}</p>}
+                        {errors.location && <p className="text-sm text-red-500">{errors.location}</p>}
                     </div>
                 </div>
             </div>
@@ -45,10 +47,10 @@ export default function CreateUserForm({ onSuccess }: { onSuccess: () => void })
                 {processing ? (
                     <>
                         <LoaderCircle className="h-4 w-4 animate-spin" />
-                        Adding...
+                        Updating...
                     </>
                 ) : (
-                    'Add'
+                    'Update'
                 )}
             </Button>
         </form>
