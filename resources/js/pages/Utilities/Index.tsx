@@ -48,6 +48,11 @@ export default function Index() {
                                             Locations
                                         </Button>
                                     </Link>
+                                    <Link href="removalReasons" prefetch>
+                                        <Button variant="outline" className="w-full">
+                                            Removal Reason
+                                        </Button>
+                                    </Link>
                                 </div>
 
                                 <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">

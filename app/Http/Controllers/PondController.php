@@ -34,14 +34,9 @@ class PondController extends Controller
      */
     public function store(StorePondRequest $request)
     {
-        // Generate pond_id
-        $pond_id = $this->generatePondId();
-
-        // Merge pond_id into validated data
-        $data = array_merge($request->validated(), ['pond_id' => $pond_id]);
-
-        // Create crab
-        Pond::create($data);
+        Pond::create(array_merge($request->validated(), [
+            'pond_id' => $this->generatePondId()
+        ]));
 
         return redirect()->route('ponds.index')->with('success', 'Pond created successfully!');
     }

@@ -3,13 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserRole>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RemovalReason>
  */
-class UserRoleFactory extends Factory
+class RemovalReasonFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +17,7 @@ class UserRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'role' => fake()->name(), 
+            'removal_reason' => fake()->name(),
         ];
     }
 }

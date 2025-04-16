@@ -13,9 +13,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
         return inertia('Utilities/PondUtilities/Locations/Index', [
-            'locations' => $locations,
+            'locations' => Location::all(),
         ]);
     }
 
