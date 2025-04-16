@@ -3,20 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\Location;
+use App\Models\Pond;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LocationSeeder extends Seeder
+class PondSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $locations = ['Indoor', 'Outdoor'];
-
-        foreach ($locations as $location) {
-            Location::firstOrCreate(['location' => $location]);
-        }
+        Pond::factory()->count(5)->create();
     }
 }

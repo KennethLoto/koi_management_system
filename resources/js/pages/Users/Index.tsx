@@ -1,4 +1,4 @@
-import DeleteUserAlert from '@/components/CustomComponents/User/DeleteUserAlert';
+import DeleteAlert from '@/components/CustomComponents/DeleteAlert';
 import UserDialog from '@/components/CustomComponents/User/UserDialog';
 import UserTable from '@/components/CustomComponents/User/UserTable';
 import { Button } from '@/components/ui/button';
@@ -83,7 +83,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                         </CardContent>
                     </Card>
 
-                    <DeleteUserAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
+                    <DeleteAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
                 </div>
             </div>
         </AppLayout>

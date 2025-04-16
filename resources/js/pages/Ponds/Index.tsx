@@ -1,89 +1,92 @@
-import DeleteAlert from '@/components/CustomComponents/DeleteAlert';
-import UserRoleDialog from '@/components/CustomComponents/UserRole/UserRoleDialog';
-import UserRoleTable from '@/components/CustomComponents/UserRole/UserRoleTable';
+import DeleteUserAlert from '@/components/CustomComponents/DeleteAlert';
+import PondDialog from '@/components/CustomComponents/Pond/PondDialog';
+import PondTable from '@/components/CustomComponents/Pond/PondTable';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
-import type { BreadcrumbItem } from '@/types';
 import { Head, router } from '@inertiajs/react';
 import { useState } from 'react';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Utilities', href: '/utilities' },
-    { title: 'UserRoles', href: '/userRoles' },
-];
-
-interface UserRole {
+interface Pond {
     id: number;
-    role: string;
+    pond_id: string;
+    capacity: number;
+    ph_level: number;
+    temperature: number;
+    ammonia_level: number;
+    location_id: number;
+    location?: {
+        id: number;
+        location: string;
+    };
 }
 
-export default function Index({ userRoles }: { userRoles: UserRole[] }) {
-    // Flash message toast
+export default function Index({ ponds, locations }: { ponds: Pond[]; locations: any[] }) {
     useFlashMessage();
 
-    // Delete dialog state
+    // Delete Dialog State
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const [deleteUserRoleId, setDeleteUserRoleId] = useState<number | null>(null);
+    const [deletePondId, setDeletePondId] = useState<number | null>(null);
 
-    const handleDeleteClick = (userRoleId: number) => {
-        setDeleteUserRoleId(userRoleId);
+    const handleDeleteClick = (pondId: number) => {
+        setDeletePondId(pondId);
         setDeleteDialogOpen(true);
     };
 
     const handleDeleteConfirm = () => {
-        if (deleteUserRoleId !== null) {
-            router.delete(`userRoles/${deleteUserRoleId}`);
+        if (deletePondId) {
+            router.delete(`/ponds/${deletePondId}`);
         }
         setDeleteDialogOpen(false);
     };
 
-    // Create/Edit dialog state
+    // Add/Edit Dialog State
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [editingUserRole, setEditingUserRole] = useState<UserRole | null>(null);
+    const [editingPond, setEditingPond] = useState<Pond | null>(null);
 
-    const handleEditClick = (userRole: UserRole) => {
-        setEditingUserRole(userRole);
+    const handleEditClick = (pond: Pond) => {
+        setEditingPond(pond);
         setIsDialogOpen(true);
     };
 
     // Add dialog state
     const handleAddClick = () => {
-        setEditingUserRole(null);
+        setEditingPond(null);
         setIsDialogOpen(true);
     };
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="UserRoles" />
+        <AppLayout>
+            <Head title="Ponds" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">UserRoles</h2>
+                            <h2 className="text-lg font-bold">Users</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button variant="link" onClick={handleAddClick}>
                                         Add
                                     </Button>
                                 </DialogTrigger>
-                                <UserRoleDialog
-                                    editingUserRole={editingUserRole}
+                                <PondDialog
+                                    editingPond={editingPond}
+                                    locations={locations}
                                     onClose={() => {
                                         setIsDialogOpen(false);
-                                        setEditingUserRole(null);
+                                        setEditingPond(null);
                                     }}
                                 />
                             </Dialog>
                         </CardHeader>
                         <CardContent>
-                            <UserRoleTable userRoles={userRoles} onEdit={handleEditClick} onDelete={handleDeleteClick} />
+                            <PondTable ponds={ponds} onEdit={handleEditClick} onDelete={handleDeleteClick} />
                         </CardContent>
                     </Card>
 
-                    <DeleteAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
+                    <DeleteUserAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
                 </div>
             </div>
         </AppLayout>

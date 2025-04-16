@@ -15,14 +15,14 @@ interface Props {
     onConfirm: () => void;
 }
 
-export default function DeleteUserAlert({ open, onCancel, onConfirm }: Props) {
+export default function DeleteAlert({ open, onCancel, onConfirm }: Props) {
     return (
         <AlertDialog open={open} onOpenChange={onCancel}>
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the user and remove their data from our servers.
+                        This action cannot be undone. This will permanently delete this item and remove their data from our servers.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

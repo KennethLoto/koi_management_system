@@ -1,4 +1,4 @@
-import DeleteUserRoleAlert from '@/components/CustomComponents/Location/DeleteLocationAlert';
+import DeleteAlert from '@/components/CustomComponents/DeleteAlert';
 import LocationDialog from '@/components/CustomComponents/Location/LocationDialog';
 import UserRoleTable from '@/components/CustomComponents/Location/LocationTable';
 import { Button } from '@/components/ui/button';
@@ -83,7 +83,7 @@ export default function Index({ locations }: { locations: Location[] }) {
                         </CardContent>
                     </Card>
 
-                    <DeleteUserRoleAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
+                    <DeleteAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
                 </div>
             </div>
         </AppLayout>
