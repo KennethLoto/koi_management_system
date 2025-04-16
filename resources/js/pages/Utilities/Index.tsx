@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
+import { Fish, ListChecks, MapPin, Settings2, Users } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,49 +16,74 @@ export default function Index() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Utilities" />
-            <div className="flex h-full flex-1 flex-col gap-6 rounded-xl p-4">
+            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
-                    <Card>
+                    <Card className="border shadow-none">
                         <CardHeader>
-                            {/* Title and Sub-description */}
-                            <div className="text-center">
-                                <h1 className="text-2xl font-bold">Utilities</h1>
-                                <p className="text-muted-foreground mt-1 text-sm">
-                                    Manage various system utilities such as user roles, settings, and more.
-                                </p>
+                            <div className="space-y-1 text-center">
+                                <h1 className="text-2xl font-semibold">Utilities</h1>
+                                <p className="text-sm">Manage various system utilities such as user roles, settings, and more.</p>
                             </div>
                         </CardHeader>
 
                         <CardContent>
-                            {/* Grid section */}
                             <div className="grid gap-4 md:grid-cols-3">
-                                {/* Card 1 */}
-                                <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">
-                                    <h2 className="mb-2 text-lg font-semibold">User Utilities</h2>
-                                    <Link href="userRoles" prefetch>
-                                        <Button variant="outline" className="w-full">
-                                            User Roles
-                                        </Button>
-                                    </Link>
-                                </div>
+                                {/* User Utilities */}
+                                <Card className="border">
+                                    <div className="space-y-4 p-4">
+                                        <div className="flex items-center gap-3">
+                                            <Users className="h-5 w-5" />
+                                            <h2 className="text-base font-medium">User Utilities</h2>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <Link href="userRoles" prefetch>
+                                                <Button variant="outline" className="h-20 w-40 flex-col gap-1 p-2">
+                                                    <Settings2 className="h-7 w-7" />
+                                                    <span className="text-sm">User Roles</span>
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </Card>
 
-                                <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">
-                                    <h2 className="mb-2 text-lg font-semibold">Pond Utilities</h2>
-                                    <Link href="locations" prefetch>
-                                        <Button variant="outline" className="w-full">
-                                            Locations
-                                        </Button>
-                                    </Link>
-                                    <Link href="removalReasons" prefetch>
-                                        <Button variant="outline" className="w-full">
-                                            Removal Reason
-                                        </Button>
-                                    </Link>
-                                </div>
+                                {/* Pond Utilities */}
+                                <Card className="border">
+                                    <div className="space-y-4 p-4">
+                                        <div className="flex items-center gap-3">
+                                            <Fish className="h-5 w-5" />
+                                            <h2 className="text-base font-medium">Pond Utilities</h2>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <Link href="locations" prefetch>
+                                                <Button variant="outline" className="h-20 w-full flex-col gap-1 p-2">
+                                                    <MapPin className="h-7 w-7" />
+                                                    <span className="text-sm">Locations</span>
+                                                </Button>
+                                            </Link>
+                                            <Link href="removalReasons" prefetch>
+                                                <Button variant="outline" className="h-20 w-full flex-col gap-1 p-2">
+                                                    <ListChecks className="h-7 w-7" />
+                                                    <span className="text-sm">Removal</span>
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </Card>
 
-                                <div className="border-sidebar-border/70 dark:border-sidebar-border flex flex-col gap-2 overflow-hidden rounded-xl border p-4">
-                                    <h2 className="mb-2 text-lg font-semibold">Upcoming Utilities</h2>
-                                </div>
+                                {/* Upcoming Utilities */}
+                                <Card className="border">
+                                    <div className="space-y-4 p-4">
+                                        <div className="flex items-center gap-3">
+                                            <Settings2 className="h-5 w-5" />
+                                            <h2 className="text-base font-medium">Upcoming</h2>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <div className="flex h-20 w-40 items-center justify-center rounded-md border p-2">
+                                                <p className="text-center text-xs">More utilities coming soon</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
                             </div>
                         </CardContent>
                     </Card>
