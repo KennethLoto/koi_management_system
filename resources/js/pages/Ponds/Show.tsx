@@ -90,7 +90,7 @@ export default function Show({ pond }: { pond: Pond }) {
                                                     <TableRow>
                                                         <TableHead>#</TableHead>
                                                         <TableHead>Date</TableHead>
-                                                        <TableHead>Recorder By</TableHead>
+                                                        <TableHead>Added By</TableHead>
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>

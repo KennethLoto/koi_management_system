@@ -18,7 +18,7 @@ export default function WaterLogTable({ logs, onEdit, onDelete }: WaterLogTableP
                     <TableHead>Temperature</TableHead>
                     <TableHead>Ammonia Level</TableHead>
                     <TableHead>Notes</TableHead>
-                    <TableHead>Recorded By</TableHead>
+                    <TableHead>Added By</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
