@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { WaterLog } from '../../../types/waterLogs';
@@ -38,6 +39,7 @@ export default function EditWaterLogForm({ waterLog, onSuccess }: EditWaterLogFo
                     <div className="col-span-3 space-y-1">
                         <Input
                             id="ph_level"
+                            autoFocus
                             type="number"
                             step="0.1"
                             value={data.ph_level}
@@ -84,19 +86,24 @@ export default function EditWaterLogForm({ waterLog, onSuccess }: EditWaterLogFo
                     </div>
                 </div>
 
-                {/* Notes */}
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="notes" className="text-right">
-                        Notes
-                    </Label>
-                    <div className="col-span-3 space-y-1">
-                        <Input
-                            id="notes"
-                            value={data.notes}
-                            onChange={(e) => setData('notes', e.target.value)}
-                            placeholder="Optional notes about the water conditions"
-                        />
-                        {errors.notes && <p className="text-sm text-red-500">{errors.notes}</p>}
+                {/* Notes Section with Border */}
+                <div className="mt-4 border-t pt-6">
+                    <div className="grid grid-cols-4 items-start gap-4">
+                        <div className="space-y-1 text-right">
+                            <Label htmlFor="notes">Notes</Label>
+                            <span className="text-muted-foreground block text-xs">Optional</span>
+                        </div>
+                        <div className="col-span-3 space-y-2">
+                            <Textarea
+                                id="notes"
+                                value={data.notes}
+                                onChange={(e) => setData('notes', e.target.value)}
+                                placeholder="Record any observations."
+                                rows={4}
+                                className="max-h-40 min-h-[100px] resize-none overflow-y-auto"
+                            />
+                            {errors.notes && <p className="text-sm text-red-500">{errors.notes}</p>}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,7 +115,7 @@ export default function EditWaterLogForm({ waterLog, onSuccess }: EditWaterLogFo
                         Updating...
                     </>
                 ) : (
-                    'Update Water Log'
+                    'Update'
                 )}
             </Button>
         </form>
