@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserRole;
 use App\Http\Requests\StoreUserRoleRequest;
 use App\Http\Requests\UpdateUserRoleRequest;
+use Inertia\Inertia;
 
 class UserRoleController extends Controller
 {
@@ -13,7 +14,7 @@ class UserRoleController extends Controller
      */
     public function index()
     {
-        return inertia('Utilities/UserUtilities/UserRoles/Index', [
+        return Inertia::render('Utilities/UserUtilities/UserRoles/Index', [
             'userRoles' => UserRole::all(),
         ]);
     }

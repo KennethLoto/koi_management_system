@@ -15,7 +15,7 @@ class PondController extends Controller
      */
     public function index()
     {
-        return inertia('Ponds/Index', [
+        return Inertia::render('Ponds/Index', [
             'ponds' => Pond::with('location')->get(),
             'locations' => Location::all(),
         ]);
@@ -46,7 +46,21 @@ class PondController extends Controller
      */
     public function show(Pond $pond)
     {
-        //
+        $pond->load(['location', 'waterLogs']); // eager load both
+
+        return Inertia::render('Ponds/Show', [
+            'pond' => $pond,
+        ]);
+    }
+
+    public function logs(Pond $pond)
+    {
+        $logs = $pond->waterLogs()->with('user')->latest()->get();
+
+        return Inertia::render('PondsInfo/WaterLogs/Index', [
+            'pond' => $pond,
+            'logs' => $logs,
+        ]);
     }
 
     /**

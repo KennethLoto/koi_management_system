@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use Inertia\Inertia;
 
 class LocationController extends Controller
 {
@@ -13,7 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return inertia('Utilities/PondUtilities/Locations/Index', [
+        return Inertia::render('Utilities/PondUtilities/Locations/Index', [
             'locations' => Location::all(),
         ]);
     }

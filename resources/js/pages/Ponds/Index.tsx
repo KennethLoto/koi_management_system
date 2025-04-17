@@ -1,4 +1,4 @@
-import DeleteUserAlert from '@/components/CustomComponents/DeleteAlert';
+import DeleteAlert from '@/components/CustomComponents/DeleteAlert';
 import PondDialog from '@/components/CustomComponents/Pond/PondDialog';
 import PondTable from '@/components/CustomComponents/Pond/PondTable';
 import { Button } from '@/components/ui/button';
@@ -61,7 +61,7 @@ export default function Index({ ponds, locations }: { ponds: Pond[]; locations: 
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Users</h2>
+                            <h2 className="text-lg font-bold">Ponds</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button variant="link" onClick={handleAddClick}>
@@ -83,7 +83,7 @@ export default function Index({ ponds, locations }: { ponds: Pond[]; locations: 
                         </CardContent>
                     </Card>
 
-                    <DeleteUserAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
+                    <DeleteAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />
                 </div>
             </div>
         </AppLayout>

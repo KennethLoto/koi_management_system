@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RemovalReason;
 use App\Http\Requests\StoreRemovalReasonRequest;
 use App\Http\Requests\UpdateRemovalReasonRequest;
+use Inertia\Inertia;
 
 class RemovalReasonController extends Controller
 {
@@ -13,7 +14,7 @@ class RemovalReasonController extends Controller
      */
     public function index()
     {
-        return inertia('Utilities/PondUtilities/RemovalReasons/Index', [
+        return Inertia::render('Utilities/PondUtilities/RemovalReasons/Index', [
             'removalReasons' => RemovalReason::all(),
         ]);
     }

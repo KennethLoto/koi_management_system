@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Link } from '@inertiajs/react';
 
 interface Pond {
     id: number;
@@ -39,6 +40,9 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                             <TableCell>{pond.capacity}</TableCell>
                             <TableCell>{pond.location?.location || 'No Location'}</TableCell>
                             <TableCell>
+                                <Link href={`/ponds/${pond.id}`}>
+                                    <Button variant="link">View</Button>
+                                </Link>
                                 <Button variant="link" onClick={() => onEdit(pond)}>
                                     Edit
                                 </Button>
