@@ -39,7 +39,7 @@ export default function Show({ pond }: { pond: Pond }) {
                                         <TableHead>Pond ID</TableHead>
                                         <TableHead>Capacity</TableHead>
                                         <TableHead>Location</TableHead>
-                                        <TableHead>Action</TableHead>
+                                        <TableHead>Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -50,7 +50,10 @@ export default function Show({ pond }: { pond: Pond }) {
                                         <TableCell>{pond.location?.location || 'N/A'}</TableCell>
                                         <TableCell>
                                             <Link href={`/pondsInfo/waterLogs/${pond.id}`} as="button">
-                                                <Button variant="link">View Water Logs</Button>
+                                                <Button variant="link">Water Logs</Button>
+                                            </Link>
+                                            <Link href={`/pondsInfo/waterLogs/${pond.id}`} as="button">
+                                                <Button variant="link">Maintenance Logs</Button>
                                             </Link>
                                         </TableCell>
                                     </TableRow>
