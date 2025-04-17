@@ -54,26 +54,31 @@ export default function Logs({ pond, logs }: { pond: Pond; logs: WaterLog[] }) {
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader>
-                            <h2 className="text-lg font-semibold">Water Logs</h2>
-                            <p className="text-muted-foreground text-sm">
-                                <span className="font-medium">Pond ID:</span> {pond.pond_id}
-                            </p>
-                            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                                <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add Water Log
-                                    </Button>
-                                </DialogTrigger>
-                                <WaterLogDialog
-                                    pondId={pond.id}
-                                    logs={logs}
-                                    editingWaterLog={editingWaterLog}
-                                    onClose={() => {
-                                        setIsDialogOpen(false);
-                                        setEditingWaterLog(null);
-                                    }}
-                                />
-                            </Dialog>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h2 className="text-lg font-semibold">Water Logs</h2>
+                                    <p className="text-muted-foreground text-sm">
+                                        <span className="font-medium">Pond ID:</span> {pond.pond_id}
+                                    </p>
+                                </div>
+
+                                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <Button variant="link" onClick={handleAddClick}>
+                                            Add
+                                        </Button>
+                                    </DialogTrigger>
+                                    <WaterLogDialog
+                                        pondId={pond.id}
+                                        logs={logs}
+                                        editingWaterLog={editingWaterLog}
+                                        onClose={() => {
+                                            setIsDialogOpen(false);
+                                            setEditingWaterLog(null);
+                                        }}
+                                    />
+                                </Dialog>
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <WaterLogTable logs={logs} onEdit={handleEditClick} onDelete={handleDeleteClick} />
