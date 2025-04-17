@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { CloudRain, CornerDownRight, ListChecks, MapPin, Settings2, Users } from 'lucide-react';
+import { CloudRain, CornerDownRight, ListChecks, ListCollapse, MapPin, Settings2, Users } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -38,7 +38,7 @@ export default function Index() {
                                         <div className="grid grid-cols-2 gap-3">
                                             <Link href="userRoles" prefetch>
                                                 <Button variant="outline" className="h-20 w-40 flex-col gap-1 p-2">
-                                                    <Settings2 className="h-7 w-7" />
+                                                    <Settings2 />
                                                     <span className="text-sm">User Roles</span>
                                                 </Button>
                                             </Link>
@@ -56,7 +56,7 @@ export default function Index() {
                                         <div className="grid grid-cols-2 gap-3">
                                             <Link href="locations" prefetch>
                                                 <Button variant="outline" className="h-20 w-full flex-col gap-1 p-2">
-                                                    <MapPin className="h-7 w-7" />
+                                                    <MapPin />
                                                     <span className="text-sm">Locations</span>
                                                 </Button>
                                             </Link>
@@ -64,6 +64,12 @@ export default function Index() {
                                                 <Button variant="outline" className="h-20 w-full flex-col gap-1 p-2">
                                                     <ListChecks className="h-7 w-7" />
                                                     <span className="text-sm">Removal Reasons</span>
+                                                </Button>
+                                            </Link>
+                                            <Link href="utilities/pondUtilities/actions" prefetch>
+                                                <Button variant="outline" className="h-20 w-full flex-col gap-1 p-2">
+                                                    <ListCollapse />
+                                                    <span className="text-sm">Actions</span>
                                                 </Button>
                                             </Link>
                                         </div>
