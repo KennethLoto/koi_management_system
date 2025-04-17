@@ -46,10 +46,15 @@ class PondController extends Controller
      */
     public function show(Pond $pond)
     {
-        $pond->load(['location', 'waterLogs']); // eager load both
+        $pond->load('location');
+
+        $latestWaterLog = $pond->waterLogs()->with('user')->latest()->first();
 
         return Inertia::render('Ponds/Show', [
-            'pond' => $pond,
+            'pond' => array_merge($pond->toArray(), [
+                'latest_water_log' => $latestWaterLog,
+                // 'latest_maintenance_log' => null, // Uncomment when you add maintenance logs
+            ]),
         ]);
     }
 
