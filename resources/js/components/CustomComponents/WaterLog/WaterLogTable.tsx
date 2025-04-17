@@ -31,7 +31,7 @@ export default function WaterLogTable({ logs, onEdit, onDelete }: WaterLogTableP
                             <TableCell>{log.ph_level}</TableCell>
                             <TableCell>{log.temperature}</TableCell>
                             <TableCell>{log.ammonia_level}</TableCell>
-                            <TableCell>{log.notes ?? '—'}</TableCell>
+                            <TableCell className="max-w-[300px] text-justify break-words whitespace-pre-wrap">{log.notes ?? '—'}</TableCell>
                             <TableCell>{log.user?.name ?? 'N/A'}</TableCell>
                             <TableCell className="font-medium">
                                 {new Date(log.created_at)
