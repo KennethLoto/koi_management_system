@@ -13,13 +13,13 @@ export default function WaterLogTable({ logs, onEdit, onDelete }: WaterLogTableP
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>pH</TableHead>
+                    <TableHead className="w-[50px]">#</TableHead>
+                    <TableHead>pH Level</TableHead>
                     <TableHead>Temperature</TableHead>
-                    <TableHead>Ammonia</TableHead>
+                    <TableHead>Ammonia Level</TableHead>
                     <TableHead>Notes</TableHead>
-                    <TableHead>Recorder By</TableHead>
+                    <TableHead>Recorded By</TableHead>
+                    <TableHead>Date</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
@@ -28,12 +28,25 @@ export default function WaterLogTable({ logs, onEdit, onDelete }: WaterLogTableP
                     logs.map((log, i) => (
                         <TableRow key={log.id}>
                             <TableCell>{i + 1}</TableCell>
-                            <TableCell className="font-medium">{new Date(log.created_at).toLocaleDateString()}</TableCell>
                             <TableCell>{log.ph_level}</TableCell>
                             <TableCell>{log.temperature}</TableCell>
                             <TableCell>{log.ammonia_level}</TableCell>
                             <TableCell>{log.notes ?? '—'}</TableCell>
                             <TableCell>{log.user?.name ?? 'N/A'}</TableCell>
+                            <TableCell className="font-medium">
+                                {new Date(log.created_at)
+                                    .toLocaleString('en-US', {
+                                        month: 'long',
+                                        day: 'numeric',
+                                        year: 'numeric',
+                                        hour: 'numeric',
+                                        minute: '2-digit',
+                                        hour12: true,
+                                    })
+                                    .replace(' at', ' @')
+                                    .replace('AM', 'am')
+                                    .replace('PM', 'pm')}
+                            </TableCell>
                             <TableCell>
                                 <Button variant="link" onClick={() => onEdit(log)}>
                                     Edit
