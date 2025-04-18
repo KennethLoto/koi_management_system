@@ -37,7 +37,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                                 <Button variant="outline" onClick={() => onEdit(action)}>
                                     <PencilLine />
                                 </Button>
-                                <Button variant="destructive" onClick={() => onDelete(action.id)}>
+                                <Button variant="destructive" className="transition-colors hover:bg-red-500" onClick={() => onDelete(action.id)}>
                                     <Trash2 />
                                 </Button>
                             </TableCell>
