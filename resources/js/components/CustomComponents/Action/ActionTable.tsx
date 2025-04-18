@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Link } from '@inertiajs/react';
 import { LayoutList, PencilLine, Trash2 } from 'lucide-react';
 
@@ -31,22 +32,43 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{action.action}</TableCell>
                             <TableCell className="flex gap-2">
-                                <Link href={`actions/${action.id}`} title="Sub-Actions">
-                                    <Button variant="secondary" className="transition-colors hover:bg-gray-700">
-                                        <LayoutList />
-                                    </Button>
-                                </Link>
-                                <Button variant="outline" onClick={() => onEdit(action)} title="Edit">
-                                    <PencilLine />
-                                </Button>
-                                <Button
-                                    variant="destructive"
-                                    className="transition-colors hover:bg-red-600"
-                                    onClick={() => onDelete(action.id)}
-                                    title="Delete"
-                                >
-                                    <Trash2 />
-                                </Button>
+                                <TooltipProvider>
+                                    {/* View / Sub-Actions */}
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Link href={`actions/${action.id}`}>
+                                                <Button variant="secondary" className="transition-colors hover:bg-gray-700">
+                                                    <LayoutList />
+                                                </Button>
+                                            </Link>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Sub-Actions</TooltipContent>
+                                    </Tooltip>
+
+                                    {/* Edit */}
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="outline" onClick={() => onEdit(action)}>
+                                                <PencilLine />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Edit</TooltipContent>
+                                    </Tooltip>
+
+                                    {/* Delete */}
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button
+                                                variant="destructive"
+                                                className="transition-colors hover:bg-red-600"
+                                                onClick={() => onDelete(action.id)}
+                                            >
+                                                <Trash2 />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Delete</TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             </TableCell>
                         </TableRow>
                     ))
