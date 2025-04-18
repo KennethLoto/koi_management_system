@@ -37,7 +37,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                                     <Tooltip>
                                         <TooltipTrigger asChild>
                                             <Link href={`actions/${action.id}`}>
-                                                <Button variant="secondary" className="transition-colors hover:bg-gray-700">
+                                                <Button variant="secondary">
                                                     <LayoutList />
                                                 </Button>
                                             </Link>
@@ -58,11 +58,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                                     {/* Delete */}
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <Button
-                                                variant="destructive"
-                                                className="transition-colors hover:bg-red-600"
-                                                onClick={() => onDelete(action.id)}
-                                            >
+                                            <Button variant="destructive" onClick={() => onDelete(action.id)}>
                                                 <Trash2 />
                                             </Button>
                                         </TooltipTrigger>
