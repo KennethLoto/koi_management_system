@@ -8,6 +8,7 @@ import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import type { BreadcrumbItem } from '@/types';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -66,8 +67,9 @@ export default function Index({ actions }: { actions: Action[] }) {
                             <h2 className="text-lg font-bold">Actions</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PlusCircle />
+                                        Add Action
                                     </Button>
                                 </DialogTrigger>
                                 <ActionDialog
