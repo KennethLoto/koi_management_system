@@ -41,7 +41,12 @@ class ActionController extends Controller
      */
     public function show(Action $action)
     {
-        //
+        // Load the action with its subActions
+        $action->load('subActions');
+
+        return Inertia::render('Utilities/PondUtilities/Actions/Show', [
+            'subAction' => $action,
+        ]);
     }
 
     /**

@@ -6,17 +6,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Action extends Model
+class SubAction extends Model
 {
-    /** @use HasFactory<\Database\Factories\ActionFactory> */
+    /** @use HasFactory<\Database\Factories\SubActionFactory> */
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'action'
+        'sub_action',
+        'action_id'
     ];
-
-    public function subActions()
-    {
-        return $this->hasMany(SubAction::class);
-    }
 }

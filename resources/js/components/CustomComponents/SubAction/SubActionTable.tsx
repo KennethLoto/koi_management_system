@@ -1,42 +1,39 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Link } from '@inertiajs/react';
 
-interface Action {
+interface SubAction {
     id: number;
-    action: string;
+    sub_action: string;
+    action_id: string;
 }
 
-interface ActionTableProps {
-    actions: Action[];
-    onEdit: (action: Action) => void;
+interface SubActionTableProps {
+    subActions: SubAction[];
+    onEdit: (subAction: SubAction) => void;
     onDelete: (id: number) => void;
 }
 
-export default function ActionTable({ actions, onEdit, onDelete }: ActionTableProps) {
+export default function SubActionTable({ subActions = [], onEdit, onDelete }: SubActionTableProps) {
     return (
         <Table>
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Action</TableHead>
-                    <TableHead>Action</TableHead>
+                    <TableHead>Sub Action</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {actions.length > 0 ? (
-                    actions.map((action, i) => (
-                        <TableRow key={action.id}>
+                {subActions.length > 0 ? (
+                    subActions.map((subAction, i) => (
+                        <TableRow key={subAction.id}>
                             <TableCell className="font-medium">{i + 1}</TableCell>
-                            <TableCell>{action.action}</TableCell>
+                            <TableCell>{subAction.sub_action}</TableCell>
                             <TableCell>
-                                <Link href={`actions/${action.id}`}>
-                                    <Button variant="link">View</Button>
-                                </Link>
-                                <Button variant="link" onClick={() => onEdit(action)}>
+                                <Button variant="link" onClick={() => onEdit(subAction)}>
                                     Edit
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(action.id)}>
+                                <Button variant="link" className="text-red-500" onClick={() => onDelete(subAction.id)}>
                                     Delete
                                 </Button>
                             </TableCell>
@@ -45,7 +42,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                 ) : (
                     <TableRow>
                         <TableCell colSpan={3} className="text-muted-foreground pt-6 text-center">
-                            No actions found.
+                            No sub-actions found.
                         </TableCell>
                     </TableRow>
                 )}
