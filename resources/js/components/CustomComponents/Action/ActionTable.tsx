@@ -31,7 +31,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                             <TableCell>{action.action}</TableCell>
                             <TableCell>
                                 <Link href={`actions/${action.id}`}>
-                                    <Button variant="link">View</Button>
+                                    <Button variant="link">Sub-Actions</Button>
                                 </Link>
                                 <Button variant="link" onClick={() => onEdit(action)}>
                                     Edit
