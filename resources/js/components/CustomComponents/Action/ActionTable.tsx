@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link } from '@inertiajs/react';
+import { PencilLine } from 'lucide-react';
 
 interface Action {
     id: number;
@@ -33,8 +34,8 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                                 <Link href={`actions/${action.id}`}>
                                     <Button variant="link">Sub-Actions</Button>
                                 </Link>
-                                <Button variant="link" onClick={() => onEdit(action)}>
-                                    Edit
+                                <Button variant="outline" onClick={() => onEdit(action)}>
+                                    <PencilLine />
                                 </Button>
                                 <Button variant="link" className="text-red-500" onClick={() => onDelete(action.id)}>
                                     Delete
