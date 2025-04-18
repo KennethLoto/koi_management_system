@@ -32,7 +32,7 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                             <TableCell>{action.action}</TableCell>
                             <TableCell className="flex gap-2">
                                 <Link href={`actions/${action.id}`}>
-                                    <Button variant="secondary">
+                                    <Button variant="secondary" className="transition-colors hover:bg-gray-700">
                                         <LayoutList />
                                     </Button>
                                 </Link>
