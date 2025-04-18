@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link } from '@inertiajs/react';
-import { PencilLine, Trash2 } from 'lucide-react';
+import { LayoutList, PencilLine, Trash2 } from 'lucide-react';
 
 interface Action {
     id: number;
@@ -32,12 +32,14 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                             <TableCell>{action.action}</TableCell>
                             <TableCell className="flex gap-2">
                                 <Link href={`actions/${action.id}`}>
-                                    <Button variant="link">Sub-Actions</Button>
+                                    <Button variant="secondary">
+                                        <LayoutList />
+                                    </Button>
                                 </Link>
                                 <Button variant="outline" onClick={() => onEdit(action)}>
                                     <PencilLine />
                                 </Button>
-                                <Button variant="destructive" className="transition-colors hover:bg-red-500" onClick={() => onDelete(action.id)}>
+                                <Button variant="destructive" className="transition-colors hover:bg-red-600" onClick={() => onDelete(action.id)}>
                                     <Trash2 />
                                 </Button>
                             </TableCell>
