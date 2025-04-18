@@ -21,8 +21,8 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Action</TableHead>
-                    <TableHead>Action</TableHead>
+                    <TableHead>Actions</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
