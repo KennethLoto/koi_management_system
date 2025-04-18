@@ -31,15 +31,20 @@ export default function ActionTable({ actions, onEdit, onDelete }: ActionTablePr
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{action.action}</TableCell>
                             <TableCell className="flex gap-2">
-                                <Link href={`actions/${action.id}`}>
+                                <Link href={`actions/${action.id}`} title="Sub-Actions">
                                     <Button variant="secondary" className="transition-colors hover:bg-gray-700">
                                         <LayoutList />
                                     </Button>
                                 </Link>
-                                <Button variant="outline" onClick={() => onEdit(action)}>
+                                <Button variant="outline" onClick={() => onEdit(action)} title="Edit">
                                     <PencilLine />
                                 </Button>
-                                <Button variant="destructive" className="transition-colors hover:bg-red-600" onClick={() => onDelete(action.id)}>
+                                <Button
+                                    variant="destructive"
+                                    className="transition-colors hover:bg-red-600"
+                                    onClick={() => onDelete(action.id)}
+                                    title="Delete"
+                                >
                                     <Trash2 />
                                 </Button>
                             </TableCell>
