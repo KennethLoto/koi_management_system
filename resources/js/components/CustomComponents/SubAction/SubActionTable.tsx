@@ -30,7 +30,7 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
                         <TableRow key={subAction.id}>
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{subAction.sub_action}</TableCell>
-                            <TableCell>
+                            <TableCell className="flex gap-2">
                                 <Button variant="outline" onClick={() => onEdit(subAction)}>
                                     <PencilLine />
                                 </Button>
