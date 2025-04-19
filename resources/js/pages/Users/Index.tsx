@@ -10,6 +10,8 @@ import { Head, router } from '@inertiajs/react';
 import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
+const breadcrumbs = [{ title: 'User Management', href: '/users' }];
+
 interface User {
     id: number;
     name: string;
@@ -33,11 +35,18 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
         setDeleteDialogOpen(true);
     };
 
+    const [loadingDeleteId, setLoadingDeleteId] = useState<number | null>(null);
+
     const handleDeleteConfirm = () => {
         if (deleteUserId) {
-            router.delete(`/users/${deleteUserId}`);
+            setLoadingDeleteId(deleteUserId);
+            router.delete(`/users/${deleteUserId}`, {
+                onFinish: () => {
+                    setLoadingDeleteId(null);
+                    setDeleteDialogOpen(false);
+                },
+            });
         }
-        setDeleteDialogOpen(false);
     };
 
     // Add/Edit Dialog State
@@ -56,7 +65,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
     };
 
     return (
-        <AppLayout>
+        <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Users" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
@@ -81,7 +90,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                             </Dialog>
                         </CardHeader>
                         <CardContent>
-                            <UserTable users={users} onEdit={handleEditClick} onDelete={handleDeleteClick} />
+                            <UserTable users={users} onEdit={handleEditClick} onDelete={handleDeleteClick} loadingDeleteId={loadingDeleteId} />
                         </CardContent>
                     </Card>
 
