@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PencilLine } from 'lucide-react';
 
 interface SubAction {
     id: number;
@@ -19,7 +20,7 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Sub-Action</TableHead>
+                    <TableHead>Sub-Actions</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
@@ -30,8 +31,8 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{subAction.sub_action}</TableCell>
                             <TableCell>
-                                <Button variant="link" onClick={() => onEdit(subAction)}>
-                                    Edit
+                                <Button variant="outline" onClick={() => onEdit(subAction)}>
+                                    <PencilLine />
                                 </Button>
                                 <Button variant="link" className="text-red-500" onClick={() => onDelete(subAction.id)}>
                                     Delete
