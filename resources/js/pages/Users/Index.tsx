@@ -7,6 +7,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { Head, router } from '@inertiajs/react';
+import { PencilLine } from 'lucide-react';
 import { useState } from 'react';
 
 interface User {
@@ -64,8 +65,9 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                             <h2 className="text-lg font-bold">Users</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PencilLine />
+                                        Add User
                                     </Button>
                                 </DialogTrigger>
                                 <UserDialog
