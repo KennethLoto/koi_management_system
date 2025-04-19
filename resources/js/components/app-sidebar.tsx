@@ -15,13 +15,13 @@ const mainNavItems: NavItem[] = [
     },
 
     {
-        title: 'Users',
+        title: 'User Management',
         href: '/users',
         icon: Users,
     },
 
     {
-        title: 'Ponds',
+        title: 'Pond Management',
         href: '/ponds',
         icon: CloudRain,
     },
