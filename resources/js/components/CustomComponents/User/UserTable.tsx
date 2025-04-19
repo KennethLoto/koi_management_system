@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PencilLine, Trash2 } from 'lucide-react';
 
 interface User {
     id: number;
@@ -38,12 +39,12 @@ export default function UserTable({ users, onEdit, onDelete }: UserTableProps) {
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>{user.user_role?.user_role || 'No role'}</TableCell>
-                            <TableCell>
-                                <Button variant="link" onClick={() => onEdit(user)}>
-                                    Edit
+                            <TableCell className="flex gap-2">
+                                <Button variant="outline" onClick={() => onEdit(user)}>
+                                    <PencilLine />
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(user.id)}>
-                                    Delete
+                                <Button variant="destructive" onClick={() => onDelete(user.id)}>
+                                    <Trash2 />
                                 </Button>
                             </TableCell>
                         </TableRow>
