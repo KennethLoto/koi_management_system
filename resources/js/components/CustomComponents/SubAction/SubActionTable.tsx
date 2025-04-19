@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { PencilLine } from 'lucide-react';
+import { PencilLine, Trash2 } from 'lucide-react';
 
 interface SubAction {
     id: number;
@@ -34,8 +34,8 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
                                 <Button variant="outline" onClick={() => onEdit(subAction)}>
                                     <PencilLine />
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(subAction.id)}>
-                                    Delete
+                                <Button variant="destructive" onClick={() => onDelete(subAction.id)}>
+                                    <Trash2 />
                                 </Button>
                             </TableCell>
                         </TableRow>
