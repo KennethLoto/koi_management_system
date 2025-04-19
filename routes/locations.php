@@ -5,5 +5,5 @@ use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('locations', LocationController::class);
+    Route::resource('utilities/pondUtilities/locations', LocationController::class);
 });

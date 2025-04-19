@@ -8,10 +8,12 @@ import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import type { BreadcrumbItem } from '@/types';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Utilities', href: '/utilities' },
+    { title: 'User Utilities', href: '/utilities/userUtilities' },
     { title: 'User Roles', href: '/userRoles' },
 ];
 
@@ -65,8 +67,9 @@ export default function Index({ userRoles }: { userRoles: UserRole[] }) {
                             <h2 className="text-lg font-bold">User Roles</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PlusCircle />
+                                        Add User Role
                                     </Button>
                                 </DialogTrigger>
                                 <UserRoleDialog

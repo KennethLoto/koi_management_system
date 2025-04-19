@@ -8,10 +8,12 @@ import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import type { BreadcrumbItem } from '@/types';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Utilities', href: '/utilities' },
+    { title: 'Pond Utilities', href: '/utilities/pondUtilities' },
     { title: 'Removal Reasons', href: '/removalReason' },
 ];
 
@@ -65,8 +67,9 @@ export default function Index({ removalReasons }: { removalReasons: RemovalReaso
                             <h2 className="text-lg font-bold">Removal Reasons</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PlusCircle />
+                                        Add Removal Reason
                                     </Button>
                                 </DialogTrigger>
                                 <RemovalReasonDialog

@@ -16,11 +16,11 @@ export default function RemovalReasonDialog({ editingRemovalReason, onClose }: P
     return (
         <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-                <DialogTitle>{editingRemovalReason ? 'Edit' : 'Add'} User Role</DialogTitle>
+                <DialogTitle>{editingRemovalReason ? 'Edit' : 'Add'} Removal Reason</DialogTitle>
                 <DialogDescription>
                     {editingRemovalReason
-                        ? 'Update the user role information below. Click update when you’re done.'
-                        : 'Fill in the form to add a new user role. Click add to proceed.'}
+                        ? 'Update the removal reason information below. Click update when you’re done.'
+                        : 'Fill in the form to add a new removal reason. Click add to proceed.'}
                 </DialogDescription>
             </DialogHeader>
             {editingRemovalReason ? (

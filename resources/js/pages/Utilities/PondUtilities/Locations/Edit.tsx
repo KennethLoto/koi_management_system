@@ -12,7 +12,7 @@ export default function EditLocationForm({ location, onSuccess }: { location: an
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(`/locations/${location.id}`, {
+        put(`/utilities/pondUtilities/locations/${location.id}`, {
             onSuccess: () => {
                 reset();
                 onSuccess();

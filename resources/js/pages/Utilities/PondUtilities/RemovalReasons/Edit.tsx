@@ -12,7 +12,7 @@ export default function EditRemovalReasonForm({ removalReason, onSuccess }: { re
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(`/removalReasons/${removalReason.id}`, {
+        put(`/utilities/pondUtilities/removalReasons/${removalReason.id}`, {
             onSuccess: () => {
                 reset();
                 onSuccess();

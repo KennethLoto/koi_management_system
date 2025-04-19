@@ -11,7 +11,7 @@ export default function CreateLocationForm({ onSuccess }: { onSuccess: () => voi
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/locations', {
+        post('/utilities/pondUtilities/locations', {
             onSuccess: () => {
                 reset();
                 onSuccess(); // closes the modal

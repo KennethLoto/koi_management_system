@@ -5,5 +5,5 @@ use App\Models\UserRole;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('userRoles', UserRoleController::class);
+    Route::resource('utilities/userUtilities/userRoles', UserRoleController::class);
 });

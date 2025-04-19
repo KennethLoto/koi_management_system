@@ -25,7 +25,7 @@ interface Action {
 export default function Show({ subAction }: { subAction: Action }) {
     const breadcrumbs = [
         { title: 'Utilities', href: '/utilities' },
-        { title: 'Pond Utilities', href: '/utilities' },
+        { title: 'Pond Utilities', href: '/utilities/pondUtilities' },
         { title: 'Actions', href: '/utilities/pondUtilities/actions' },
         { title: `Sub-Action - ${subAction.action}`, href: `/actions/${subAction.id}` },
     ];

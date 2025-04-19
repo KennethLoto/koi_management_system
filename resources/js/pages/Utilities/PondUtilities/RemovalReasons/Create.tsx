@@ -11,7 +11,7 @@ export default function CreateRemovalReasonForm({ onSuccess }: { onSuccess: () =
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/removalReasons', {
+        post('/utilities/pondUtilities/removalReasons', {
             onSuccess: () => {
                 reset();
                 onSuccess(); // closes the modal

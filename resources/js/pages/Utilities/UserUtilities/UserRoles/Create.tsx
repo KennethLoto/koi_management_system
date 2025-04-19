@@ -11,7 +11,7 @@ export default function CreateUserRoleForm({ onSuccess }: { onSuccess: () => voi
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/userRoles', {
+        post('/utilities/userUtilities/userRoles', {
             onSuccess: () => {
                 reset();
                 onSuccess(); // closes the modal

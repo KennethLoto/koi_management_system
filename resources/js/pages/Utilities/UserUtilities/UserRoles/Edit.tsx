@@ -12,7 +12,7 @@ export default function EditUserRoleForm({ userRole, onSuccess }: { userRole: an
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(`/userRoles/${userRole.id}`, {
+        put(`/utilities/userUtilities/userRoles/${userRole.id}`, {
             onSuccess: () => {
                 reset();
                 onSuccess();
