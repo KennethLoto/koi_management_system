@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { PencilLine, Trash2 } from 'lucide-react';
 
 interface SubAction {
@@ -31,12 +32,23 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
                             <TableCell className="font-medium">{i + 1}</TableCell>
                             <TableCell>{subAction.sub_action}</TableCell>
                             <TableCell className="flex gap-2">
-                                <Button variant="outline" onClick={() => onEdit(subAction)}>
-                                    <PencilLine />
-                                </Button>
-                                <Button variant="destructive" onClick={() => onDelete(subAction.id)}>
-                                    <Trash2 />
-                                </Button>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="outline" onClick={() => onEdit(subAction)}>
+                                            <PencilLine />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>Edit</TooltipContent>
+                                </Tooltip>
+
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="destructive" onClick={() => onDelete(subAction.id)}>
+                                            <Trash2 />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>Delete</TooltipContent>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     ))
