@@ -19,7 +19,7 @@ export default function SubActionTable({ subActions = [], onEdit, onDelete }: Su
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">#</TableHead>
-                    <TableHead>Sub Action</TableHead>
+                    <TableHead>Sub-Action</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
