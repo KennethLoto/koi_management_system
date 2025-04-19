@@ -7,6 +7,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 interface SubAction {
@@ -69,8 +70,9 @@ export default function Show({ subAction }: { subAction: Action }) {
                             <h2 className="text-lg font-bold">Sub Actions</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PlusCircle />
+                                        Add Sub-Action
                                     </Button>
                                 </DialogTrigger>
                                 <SubActionDialog
