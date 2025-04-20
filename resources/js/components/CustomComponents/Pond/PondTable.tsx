@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Link } from '@inertiajs/react';
-import { PencilLine, Trash2 } from 'lucide-react';
+import { Eye, PencilLine, Trash2 } from 'lucide-react';
 
 interface Pond {
     id: number;
@@ -42,12 +42,14 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                             <TableCell>{pond.location?.location || 'No Location'}</TableCell>
                             <TableCell>
                                 <Link href={`/ponds/${pond.id}`}>
-                                    <Button variant="link">View</Button>
+                                    <Button variant="secondary">
+                                        <Eye />
+                                    </Button>
                                 </Link>
                                 <Button variant="outline" onClick={() => onEdit(pond)}>
                                     <PencilLine />
                                 </Button>
-                                <Button variant="destructive" className="text-red-500" onClick={() => onDelete(pond.id)}>
+                                <Button variant="destructive" onClick={() => onDelete(pond.id)}>
                                     <Trash2 />
                                 </Button>
                             </TableCell>
