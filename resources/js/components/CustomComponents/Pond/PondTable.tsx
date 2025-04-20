@@ -40,7 +40,7 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                             <TableCell>{pond.pond_id}</TableCell>
                             <TableCell>{pond.capacity}</TableCell>
                             <TableCell>{pond.location?.location || 'No Location'}</TableCell>
-                            <TableCell>
+                            <TableCell className="flex gap-2">
                                 <Link href={`/ponds/${pond.id}`}>
                                     <Button variant="secondary">
                                         <Eye />
