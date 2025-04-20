@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Link } from '@inertiajs/react';
 import { Eye, PencilLine, Trash2 } from 'lucide-react';
 
@@ -41,17 +42,32 @@ export default function PondTable({ ponds, onEdit, onDelete }: PondTableProps) {
                             <TableCell>{pond.capacity}</TableCell>
                             <TableCell>{pond.location?.location || 'No Location'}</TableCell>
                             <TableCell className="flex gap-2">
-                                <Link href={`/ponds/${pond.id}`}>
-                                    <Button variant="secondary">
-                                        <Eye />
-                                    </Button>
-                                </Link>
-                                <Button variant="outline" onClick={() => onEdit(pond)}>
-                                    <PencilLine />
-                                </Button>
-                                <Button variant="destructive" onClick={() => onDelete(pond.id)}>
-                                    <Trash2 />
-                                </Button>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Link href={`/ponds/${pond.id}`}>
+                                            <Button variant="secondary">
+                                                <Eye />
+                                            </Button>
+                                        </Link>
+                                    </TooltipTrigger>
+                                    <TooltipContent>View</TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="outline" onClick={() => onEdit(pond)}>
+                                            <PencilLine />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>Edit</TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="destructive" onClick={() => onDelete(pond.id)}>
+                                            <Trash2 />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>Delete</TooltipContent>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     ))
