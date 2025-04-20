@@ -9,6 +9,8 @@ import AppLayout from '@/layouts/app-layout';
 import { Head, router } from '@inertiajs/react';
 import { useState } from 'react';
 
+const breadcrumbs = [{ title: 'Pond Management', href: '/ponds' }];
+
 interface Pond {
     id: number;
     pond_id: string;
@@ -55,7 +57,7 @@ export default function Index({ ponds, locations }: { ponds: Pond[]; locations: 
     };
 
     return (
-        <AppLayout>
+        <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Ponds" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
