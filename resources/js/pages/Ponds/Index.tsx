@@ -7,6 +7,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs = [{ title: 'Pond Management', href: '/ponds' }];
@@ -66,8 +67,9 @@ export default function Index({ ponds, locations }: { ponds: Pond[]; locations: 
                             <h2 className="text-lg font-bold">Ponds</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="link" onClick={handleAddClick}>
-                                        Add
+                                    <Button onClick={handleAddClick}>
+                                        <PlusCircle />
+                                        Add Pond
                                     </Button>
                                 </DialogTrigger>
                                 <PondDialog
