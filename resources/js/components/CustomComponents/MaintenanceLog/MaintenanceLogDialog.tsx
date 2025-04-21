@@ -25,7 +25,7 @@ export default function MaintenanceLogDialog({ pondId, editingMaintenanceLog, on
                 <DialogTitle>{editingMaintenanceLog ? 'Edit Water Log' : 'Add Water Log'}</DialogTitle>
                 <DialogDescription>
                     {editingMaintenanceLog
-                        ? 'Update the water log information below. Click update when you’re done.'
+                        ? 'Update the water log information below. Click update to proceed.'
                         : 'Fill in the form to add a new water log. Click add to proceed.'}
                 </DialogDescription>
             </DialogHeader>

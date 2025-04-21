@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -56,14 +57,12 @@ export default function EditMaintenanceLogForm({ maintenanceLog, actions, onSucc
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-4 py-4">
-                {/* Action Dropdown */}
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="action_id" className="text-right">
-                        Action
-                    </Label>
-                    <div className="col-span-3 space-y-1">
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <Card>
+                <CardContent className="space-y-6">
+                    {/* Action Dropdown */}
+                    <div className="space-y-2">
+                        <Label htmlFor="action_id">Action</Label>
                         <Select value={data.action_id} onValueChange={(value) => setData('action_id', value)} required>
                             <SelectTrigger>
                                 <SelectValue placeholder="Select an action" />
@@ -78,14 +77,10 @@ export default function EditMaintenanceLogForm({ maintenanceLog, actions, onSucc
                         </Select>
                         {errors.action_id && <p className="text-sm text-red-500">{errors.action_id}</p>}
                     </div>
-                </div>
 
-                {/* Sub Action Dropdown */}
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="sub_action_id" className="text-right">
-                        Sub Action
-                    </Label>
-                    <div className="col-span-3 space-y-1">
+                    {/* Sub Action Dropdown */}
+                    <div className="space-y-2">
+                        <Label htmlFor="sub_action_id">Sub Action</Label>
                         <Select
                             value={data.sub_action_id}
                             onValueChange={(value) => setData('sub_action_id', value)}
@@ -113,27 +108,24 @@ export default function EditMaintenanceLogForm({ maintenanceLog, actions, onSucc
                         </Select>
                         {errors.sub_action_id && <p className="text-sm text-red-500">{errors.sub_action_id}</p>}
                     </div>
-                </div>
 
-                {/* Notes */}
-                <div className="grid grid-cols-4 items-start gap-4">
-                    <div className="space-y-1 text-right">
-                        <Label htmlFor="notes">Notes</Label>
-                        <span className="text-muted-foreground block text-xs">Optional</span>
-                    </div>
-                    <div className="col-span-3 space-y-2">
+                    {/* Notes Section */}
+                    <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                            <Label htmlFor="notes">Notes</Label>
+                            <span className="text-muted-foreground text-sm">Optional</span>
+                        </div>
                         <Textarea
                             id="notes"
                             value={data.notes}
                             onChange={(e) => setData('notes', e.target.value)}
                             placeholder="Record any observations or details..."
-                            rows={4}
-                            className="max-h-40 min-h-[100px] resize-none overflow-y-auto"
+                            className="min-h-[120px]"
                         />
                         {errors.notes && <p className="text-sm text-red-500">{errors.notes}</p>}
                     </div>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
 
             <div className="flex justify-end">
                 <Button type="submit" disabled={processing}>

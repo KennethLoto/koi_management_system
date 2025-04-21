@@ -77,8 +77,8 @@ export default function Index({ pond, maintenanceLogs, actions }: IndexProps) {
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
-                                        <PlusCircle className="mr-2 h-4 w-4" />
-                                        Add Log
+                                        <PlusCircle />
+                                        Add Maintenance Log
                                     </Button>
                                 </DialogTrigger>
                                 <MaintenanceLogDialog
