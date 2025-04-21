@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { PencilLine } from 'lucide-react';
+import { PencilLine, Trash2 } from 'lucide-react';
 import { MaintenanceLog } from '../../../types/maintenanceLogs';
 
 interface MaintenanceLogTableProps {
@@ -52,8 +52,8 @@ export default function MaintenanceLogTable({ maintenanceLogs, onEdit, onDelete 
                                 <Button variant="outline" onClick={() => onEdit(maintenanceLog)}>
                                     <PencilLine />
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(maintenanceLog.id)}>
-                                    Delete
+                                <Button variant="destructive" onClick={() => onDelete(maintenanceLog.id)}>
+                                    <Trash2 />
                                 </Button>
                             </TableCell>
                         </TableRow>
