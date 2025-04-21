@@ -20,12 +20,24 @@ interface WaterLog {
     };
 }
 
+interface MaintenanceLog {
+    id: number;
+    updated_at: string;
+    notes: string;
+    user_id: string;
+    user?: {
+        id: string;
+        name: string;
+    };
+}
+
 interface Pond {
     id: number;
     pond_id: string;
     capacity: number;
     location?: Location;
     latest_water_log?: WaterLog;
+    latest_maintenance_log?: MaintenanceLog;
 }
 
 export default function Show({ pond }: { pond: Pond }) {
@@ -115,10 +127,8 @@ export default function Show({ pond }: { pond: Pond }) {
                                                         </TableRow>
                                                     ) : (
                                                         <TableRow>
-                                                            <TableCell colSpan={5} className="py-4 text-center">
-                                                                <div className="flex flex-col items-center space-y-2">
-                                                                    <p className="text-muted-foreground">No water logs available.</p>
-                                                                </div>
+                                                            <TableCell colSpan={3} className="py-4 text-center">
+                                                                <p className="text-muted-foreground">No water logs available.</p>
                                                             </TableCell>
                                                         </TableRow>
                                                     )}
@@ -137,18 +147,38 @@ export default function Show({ pond }: { pond: Pond }) {
                                             <Table>
                                                 <TableHeader>
                                                     <TableRow>
+                                                        <TableHead>#</TableHead>
                                                         <TableHead>Date</TableHead>
-                                                        <TableHead>Type</TableHead>
-                                                        <TableHead>Action</TableHead>
-                                                        <TableHead>Status</TableHead>
+                                                        <TableHead>Added By</TableHead>
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
-                                                    <TableRow>
-                                                        <TableCell colSpan={4} className="py-4 text-center">
-                                                            <p className="text-muted-foreground">No maintenance logs</p>
-                                                        </TableCell>
-                                                    </TableRow>
+                                                    {pond.latest_maintenance_log ? (
+                                                        <TableRow>
+                                                            <TableCell>1</TableCell>
+                                                            <TableCell className="whitespace-nowrap">
+                                                                {new Date(pond.latest_maintenance_log.updated_at)
+                                                                    .toLocaleString('en-US', {
+                                                                        month: 'long',
+                                                                        day: 'numeric',
+                                                                        year: 'numeric',
+                                                                        hour: 'numeric',
+                                                                        minute: '2-digit',
+                                                                        hour12: true,
+                                                                    })
+                                                                    .replace(' at', ' @')
+                                                                    .replace('AM', 'am')
+                                                                    .replace('PM', 'pm')}
+                                                            </TableCell>
+                                                            <TableCell>{pond.latest_maintenance_log.user?.name || 'N/A'}</TableCell>
+                                                        </TableRow>
+                                                    ) : (
+                                                        <TableRow>
+                                                            <TableCell colSpan={3} className="py-4 text-center">
+                                                                <p className="text-muted-foreground">No maintenance logs available.</p>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    )}
                                                 </TableBody>
                                             </Table>
                                         </div>
