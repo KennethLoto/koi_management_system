@@ -70,7 +70,7 @@ export default function EditMaintenanceLogForm({ maintenanceLog, actions, onSucc
                             </SelectTrigger>
                             <SelectContent>
                                 {actions.map((action) => (
-                                    <SelectItem key={action.id} value={action.id}>
+                                    <SelectItem key={action.id} value={action.id} className="hover:bg-gray-100 dark:hover:bg-gray-800">
                                         {action.action}
                                     </SelectItem>
                                 ))}
@@ -105,7 +105,7 @@ export default function EditMaintenanceLogForm({ maintenanceLog, actions, onSucc
                             </SelectTrigger>
                             <SelectContent>
                                 {availableSubActions.map((subAction) => (
-                                    <SelectItem key={subAction.id} value={subAction.id}>
+                                    <SelectItem key={subAction.id} value={subAction.id} className="hover:bg-gray-100 dark:hover:bg-gray-800">
                                         {subAction.sub_action}
                                     </SelectItem>
                                 ))}
