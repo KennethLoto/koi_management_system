@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { PencilLine, Trash2 } from 'lucide-react';
 import { MaintenanceLog } from '../../../types/maintenanceLogs';
 
@@ -49,12 +50,22 @@ export default function MaintenanceLogTable({ maintenanceLogs, onEdit, onDelete 
                                     .replace('PM', 'pm')}
                             </TableCell>
                             <TableCell className="flex gap-2">
-                                <Button variant="outline" onClick={() => onEdit(maintenanceLog)}>
-                                    <PencilLine />
-                                </Button>
-                                <Button variant="destructive" onClick={() => onDelete(maintenanceLog.id)}>
-                                    <Trash2 />
-                                </Button>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="outline" onClick={() => onEdit(maintenanceLog)}>
+                                            <PencilLine />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent> Edit </TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="destructive" onClick={() => onDelete(maintenanceLog.id)}>
+                                            <Trash2 />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent> Delete </TooltipContent>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     ))
