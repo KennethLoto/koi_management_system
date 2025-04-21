@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PencilLine } from 'lucide-react';
 import { MaintenanceLog } from '../../../types/maintenanceLogs';
 
 interface MaintenanceLogTableProps {
@@ -48,8 +49,8 @@ export default function MaintenanceLogTable({ maintenanceLogs, onEdit, onDelete 
                                     .replace('PM', 'pm')}
                             </TableCell>
                             <TableCell>
-                                <Button variant="link" onClick={() => onEdit(maintenanceLog)}>
-                                    Edit
+                                <Button variant="outline" onClick={() => onEdit(maintenanceLog)}>
+                                    <PencilLine />
                                 </Button>
                                 <Button variant="link" className="text-red-500" onClick={() => onDelete(maintenanceLog.id)}>
                                     Delete
