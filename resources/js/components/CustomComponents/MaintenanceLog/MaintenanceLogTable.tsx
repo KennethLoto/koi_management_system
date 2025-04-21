@@ -1,22 +1,21 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { WaterLog } from '../../../types/waterLogs';
+import { MaintenanceLog } from '../../../types/maintenanceLogs';
 
-interface WaterLogTableProps {
-    waterLogs: WaterLog[];
-    onEdit: (waterLog: WaterLog) => void;
-    onDelete: (waterLogId: string) => void;
+interface MaintenanceLogTableProps {
+    maintenanceLogs: MaintenanceLog[];
+    onEdit: (maintenanceLog: MaintenanceLog) => void;
+    onDelete: (maintenanceLogId: string) => void;
 }
 
-export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogTableProps) {
+export default function MaintenanceLogTable({ maintenanceLogs, onEdit, onDelete }: MaintenanceLogTableProps) {
     return (
         <Table>
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[50px]">#</TableHead>
-                    <TableHead>pH Level</TableHead>
-                    <TableHead>Temperature</TableHead>
-                    <TableHead>Ammonia Level</TableHead>
+                    <TableHead>Actions</TableHead>
+                    <TableHead>Sub-Actions</TableHead>
                     <TableHead>Notes</TableHead>
                     <TableHead>Added By</TableHead>
                     <TableHead>Date</TableHead>
@@ -24,17 +23,18 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {waterLogs.length > 0 ? (
-                    waterLogs.map((waterLog, i) => (
-                        <TableRow key={waterLog.id}>
+                {maintenanceLogs.length > 0 ? (
+                    maintenanceLogs.map((maintenanceLog, i) => (
+                        <TableRow key={maintenanceLog.id}>
                             <TableCell>{i + 1}</TableCell>
-                            <TableCell>{waterLog.ph_level}</TableCell>
-                            <TableCell>{waterLog.temperature}</TableCell>
-                            <TableCell>{waterLog.ammonia_level}</TableCell>
-                            <TableCell className="max-w-[300px] text-justify break-words whitespace-pre-wrap">{waterLog.notes ?? '—'}</TableCell>
-                            <TableCell>{waterLog.user?.name ?? 'N/A'}</TableCell>
+                            <TableCell>{maintenanceLog.action?.action}</TableCell>
+                            <TableCell>{maintenanceLog.sub_action?.sub_action}</TableCell>
+                            <TableCell className="max-w-[300px] text-justify break-words whitespace-pre-wrap">
+                                {maintenanceLog.notes ?? '—'}
+                            </TableCell>
+                            <TableCell>{maintenanceLog.user?.name ?? 'N/A'}</TableCell>
                             <TableCell className="font-medium">
-                                {new Date(waterLog.created_at)
+                                {new Date(maintenanceLog.created_at)
                                     .toLocaleString('en-US', {
                                         month: 'long',
                                         day: 'numeric',
@@ -48,10 +48,10 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                                     .replace('PM', 'pm')}
                             </TableCell>
                             <TableCell>
-                                <Button variant="link" onClick={() => onEdit(waterLog)}>
+                                <Button variant="link" onClick={() => onEdit(maintenanceLog)}>
                                     Edit
                                 </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(waterLog.id)}>
+                                <Button variant="link" className="text-red-500" onClick={() => onDelete(maintenanceLog.id)}>
                                     Delete
                                 </Button>
                             </TableCell>
@@ -60,7 +60,7 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                 ) : (
                     <TableRow>
                         <TableCell colSpan={8} className="h-24 text-center">
-                            No water logs available
+                            No maintenance logs available.
                         </TableCell>
                     </TableRow>
                 )}

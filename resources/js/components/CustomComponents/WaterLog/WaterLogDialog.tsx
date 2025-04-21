@@ -5,7 +5,7 @@ import { WaterLog } from '../../../types/waterLogs';
 
 interface Props {
     pondId: string;
-    logs: WaterLog[];
+    waterLogs: WaterLog[];
     editingWaterLog: WaterLog | null;
     onClose: () => void;
 }

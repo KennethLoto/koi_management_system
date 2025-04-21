@@ -29,4 +29,9 @@ class Pond extends Model
     {
         return $this->hasMany(WaterLog::class);
     }
+
+    public function maintenanceLogs()
+    {
+        return $this->hasMany(MaintenanceLog::class);
+    }
 }

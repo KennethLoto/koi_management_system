@@ -10,7 +10,7 @@ import { Head, router } from '@inertiajs/react';
 import { useState } from 'react';
 import { Pond, WaterLog } from '../../../types/waterLogs';
 
-export default function Logs({ pond, logs }: { pond: Pond; logs: WaterLog[] }) {
+export default function Logs({ pond, waterLogs }: { pond: Pond; waterLogs: WaterLog[] }) {
     useFlashMessage();
 
     const breadcrumbs = [
@@ -70,7 +70,7 @@ export default function Logs({ pond, logs }: { pond: Pond; logs: WaterLog[] }) {
                                     </DialogTrigger>
                                     <WaterLogDialog
                                         pondId={pond.id}
-                                        logs={logs}
+                                        waterLogs={waterLogs}
                                         editingWaterLog={editingWaterLog}
                                         onClose={() => {
                                             setIsDialogOpen(false);
@@ -81,7 +81,7 @@ export default function Logs({ pond, logs }: { pond: Pond; logs: WaterLog[] }) {
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <WaterLogTable logs={logs} onEdit={handleEditClick} onDelete={handleDeleteClick} />
+                            <WaterLogTable waterLogs={waterLogs} onEdit={handleEditClick} onDelete={handleDeleteClick} />
                         </CardContent>
                     </Card>
                     <DeleteAlert open={deleteDialogOpen} onCancel={() => setDeleteDialogOpen(false)} onConfirm={handleDeleteConfirm} />

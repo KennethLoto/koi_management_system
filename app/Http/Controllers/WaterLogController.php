@@ -14,9 +14,7 @@ class WaterLogController extends Controller
      */
     public function index()
     {
-        return Inertia::render('PondsInfo/WaterLogs/Index', [
-            'waterLogs' => WaterLog::all(),
-        ]);
+        //
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pond;
 use App\Http\Requests\StorePondRequest;
 use App\Http\Requests\UpdatePondRequest;
+use App\Models\Action;
 use App\Models\Location;
 use Inertia\Inertia;
 
@@ -58,16 +59,6 @@ class PondController extends Controller
         ]);
     }
 
-    public function logs(Pond $pond)
-    {
-        $logs = $pond->waterLogs()->with('user')->latest()->get();
-
-        return Inertia::render('PondsInfo/WaterLogs/Index', [
-            'pond' => $pond,
-            'logs' => $logs,
-        ]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -101,5 +92,27 @@ class PondController extends Controller
             ->where('pond_id', 'like', "PND-{$today}-%")
             ->latest('pond_id')->value('pond_id') ?? '', -4);
         return "PND-{$today}-" . str_pad($lastSeq > 0 ? $lastSeq + 1 : 1, 4, '0', STR_PAD_LEFT);
+    }
+
+    public function waterlogs(Pond $pond)
+    {
+        $waterLogs = $pond->waterLogs()->with('user')->latest()->get();
+
+        return Inertia::render('PondsInfo/WaterLogs/Index', [
+            'pond' => $pond,
+            'waterLogs' => $waterLogs,
+        ]);
+    }
+
+    public function maintenancelogs(Pond $pond)
+    {
+        $maintenanceLogs = $pond->maintenanceLogs()->with(['action', 'sub_action', 'user'])->latest()->get();
+        $actions = Action::with('subActions')->get(); // ✅ This line fetches actions and sub-actions
+
+        return Inertia::render('PondsInfo/MaintenanceLogs/Index', [
+            'pond' => $pond,
+            'maintenanceLogs' => $maintenanceLogs,
+            'actions' => $actions,
+        ]);
     }
 }
