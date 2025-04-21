@@ -48,7 +48,7 @@ export default function MaintenanceLogTable({ maintenanceLogs, onEdit, onDelete 
                                     .replace('AM', 'am')
                                     .replace('PM', 'pm')}
                             </TableCell>
-                            <TableCell>
+                            <TableCell className="flex gap-2">
                                 <Button variant="outline" onClick={() => onEdit(maintenanceLog)}>
                                     <PencilLine />
                                 </Button>
