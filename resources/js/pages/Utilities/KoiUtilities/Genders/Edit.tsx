@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
@@ -21,13 +22,12 @@ export default function EditGenderForm({ gender, onSuccess }: { gender: any; onS
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                        Gender
-                    </Label>
-                    <div className="col-span-3 space-y-1">
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <Card>
+                <CardContent className="space-y-6">
+                    {/* Gender Input */}
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Gender</Label>
                         <Input
                             id="name"
                             type="text"
@@ -38,21 +38,23 @@ export default function EditGenderForm({ gender, onSuccess }: { gender: any; onS
                             required
                             className="w-full"
                         />
-                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                        {errors.name && <p className="text-destructive text-sm">{errors.name}</p>}
                     </div>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
 
-            <Button type="submit" disabled={processing} className="float-end">
-                {processing ? (
-                    <>
-                        <LoaderCircle className="h-4 w-4 animate-spin" />
-                        Updating...
-                    </>
-                ) : (
-                    'Update'
-                )}
-            </Button>
+            <div className="flex justify-end">
+                <Button type="submit" disabled={processing}>
+                    {processing ? (
+                        <>
+                            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                            Updating...
+                        </>
+                    ) : (
+                        'Update'
+                    )}
+                </Button>
+            </div>
         </form>
     );
 }
