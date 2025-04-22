@@ -19,8 +19,8 @@ export default function GenderDialog({ editingGender, onClose }: Props) {
                 <DialogTitle>{editingGender ? 'Edit' : 'Add'} Gender</DialogTitle>
                 <DialogDescription>
                     {editingGender
-                        ? 'Update the gender information below. Click update when you’re done.'
-                        : 'Fill in the form to add a new gender. Click add to proceed.'}
+                        ? '▸ Update the gender details below and click "Update" when finished.'
+                        : '▸ Fill in the form to add a new gender and click "Add" to proceed.'}
                 </DialogDescription>
             </DialogHeader>
             {editingGender ? <EditGenderForm gender={editingGender} onSuccess={onClose} /> : <CreateGenderForm onSuccess={onClose} />}
