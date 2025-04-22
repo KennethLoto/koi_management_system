@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PencilLine, Trash2 } from 'lucide-react';
 import { WaterLog } from '../../../types/waterLogs';
 
 interface WaterLogTableProps {
@@ -49,11 +50,11 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                                         .replace('PM', 'pm')}
                                 </TableCell>
                                 <TableCell>
-                                    <Button variant="link" onClick={() => onEdit(waterLog)}>
-                                        Edit
+                                    <Button variant="secondary" onClick={() => onEdit(waterLog)}>
+                                        <PencilLine />
                                     </Button>
-                                    <Button variant="link" className="text-red-500" onClick={() => onDelete(waterLog.id)}>
-                                        Delete
+                                    <Button variant="destructive" onClick={() => onDelete(waterLog.id)}>
+                                        <Trash2 />
                                     </Button>
                                 </TableCell>
                             </TableRow>
