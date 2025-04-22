@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Loader2, PencilLine, Trash2 } from 'lucide-react';
 
 interface User {
@@ -42,12 +43,22 @@ export default function UserTable({ users, onEdit, onDelete, loadingDeleteId }: 
                                 <TableCell>{user.email}</TableCell>
                                 <TableCell>{user.user_role?.user_role || 'No role'}</TableCell>
                                 <TableCell className="flex gap-2">
-                                    <Button variant="outline" onClick={() => onEdit(user)}>
-                                        <PencilLine />
-                                    </Button>
-                                    <Button variant="destructive" onClick={() => onDelete(user.id)} disabled={loadingDeleteId === user.id}>
-                                        {loadingDeleteId === user.id ? <Loader2 className="animate-spin" /> : <Trash2 />}
-                                    </Button>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="outline" onClick={() => onEdit(user)}>
+                                                <PencilLine />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Edit</TooltipContent>
+                                    </Tooltip>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="destructive" onClick={() => onDelete(user.id)} disabled={loadingDeleteId === user.id}>
+                                                {loadingDeleteId === user.id ? <Loader2 className="animate-spin" /> : <Trash2 />}
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Delete</TooltipContent>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))
