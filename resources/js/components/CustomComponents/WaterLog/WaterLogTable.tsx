@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { PencilLine, Trash2 } from 'lucide-react';
 import { WaterLog } from '../../../types/waterLogs';
 
@@ -50,12 +51,22 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                                         .replace('PM', 'pm')}
                                 </TableCell>
                                 <TableCell className="flex gap-2">
-                                    <Button variant="secondary" onClick={() => onEdit(waterLog)}>
-                                        <PencilLine />
-                                    </Button>
-                                    <Button variant="destructive" onClick={() => onDelete(waterLog.id)}>
-                                        <Trash2 />
-                                    </Button>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="secondary" onClick={() => onEdit(waterLog)}>
+                                                <PencilLine />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Edit</TooltipContent>
+                                    </Tooltip>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Button variant="destructive" onClick={() => onDelete(waterLog.id)}>
+                                                <Trash2 />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>Delete</TooltipContent>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))
