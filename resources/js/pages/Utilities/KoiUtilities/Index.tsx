@@ -31,7 +31,7 @@ export default function Index() {
                     <CardContent>
                         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                             {/* UserRoles */}
-                            <Link href="userUtilities/userRoles" className="group">
+                            <Link href="koiUtilities/genders" className="group">
                                 <Card className="group-hover:border-primary h-full transition-all duration-200 hover:shadow-sm">
                                     <CardContent className="flex h-full flex-col p-6">
                                         <div className="mb-4 flex items-center justify-between">

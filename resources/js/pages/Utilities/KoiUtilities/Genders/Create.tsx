@@ -4,14 +4,14 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function CreateUserRoleForm({ onSuccess }: { onSuccess: () => void }) {
+export default function CreateGenderForm({ onSuccess }: { onSuccess: () => void }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        user_role: '',
+        name: '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/utilities/userUtilities/userRoles', {
+        post('/utilities/koiUtilities/genders', {
             onSuccess: () => {
                 reset();
                 onSuccess(); // closes the modal
@@ -23,20 +23,20 @@ export default function CreateUserRoleForm({ onSuccess }: { onSuccess: () => voi
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="user_role" className="text-right">
-                        User Role
+                    <Label htmlFor="name" className="text-right">
+                        Gender
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="user_role"
+                            id="name"
                             type="text"
                             autoComplete="on"
-                            value={data.user_role}
-                            onChange={(e) => setData('user_role', e.target.value)}
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
                             required
                             className="w-full"
                         />
-                        {errors.user_role && <p className="text-sm text-red-500">{errors.user_role}</p>}
+                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                 </div>
             </div>

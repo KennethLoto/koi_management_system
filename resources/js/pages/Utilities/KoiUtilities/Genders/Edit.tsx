@@ -4,15 +4,15 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
-export default function EditUserRoleForm({ userRole, onSuccess }: { userRole: any; onSuccess: () => void }) {
+export default function EditGenderForm({ gender, onSuccess }: { gender: any; onSuccess: () => void }) {
     const { data, setData, put, processing, errors, reset } = useForm({
-        id: userRole.id,
-        user_role: userRole.user_role,
+        id: gender.id,
+        name: gender.name,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(`/utilities/userUtilities/userRoles/${userRole.id}`, {
+        put(`/utilities/koiUtilities/genders/${gender.id}`, {
             onSuccess: () => {
                 reset();
                 onSuccess();
@@ -24,21 +24,21 @@ export default function EditUserRoleForm({ userRole, onSuccess }: { userRole: an
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="user_role" className="text-right">
-                        User Role
+                    <Label htmlFor="name" className="text-right">
+                        Gender
                     </Label>
                     <div className="col-span-3 space-y-1">
                         <Input
-                            id="user_role"
+                            id="name"
                             type="text"
                             autoFocus
-                            value={data.user_role}
-                            onChange={(e) => setData('user_role', e.target.value)}
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
                             autoComplete="on"
                             required
                             className="w-full"
                         />
-                        {errors.user_role && <p className="text-sm text-red-500">{errors.user_role}</p>}
+                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                     </div>
                 </div>
             </div>

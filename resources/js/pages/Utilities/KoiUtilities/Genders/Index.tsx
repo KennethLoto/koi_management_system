@@ -1,6 +1,6 @@
 import DeleteAlert from '@/components/CustomComponents/DeleteAlert';
-import UserRoleDialog from '@/components/CustomComponents/UserRole/UserRoleDialog';
-import UserRoleTable from '@/components/CustomComponents/UserRole/UserRoleTable';
+import GenderDialog from '@/components/CustomComponents/Gender/GenderDialog';
+import GenderTable from '@/components/CustomComponents/Gender/GenderTable';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
@@ -13,76 +13,76 @@ import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Utilities', href: '/utilities' },
-    { title: 'User Utilities', href: '/utilities/userUtilities' },
-    { title: 'User Roles', href: '/userRoles' },
+    { title: 'Koi Utilities', href: '/utilities/koiUtilities' },
+    { title: 'Genders', href: '/utilities/koiUtilities/genders' },
 ];
 
-interface UserRole {
-    id: number;
-    user_role: string;
+interface Gender {
+    id: string;
+    name: string;
 }
 
-export default function Index({ userRoles }: { userRoles: UserRole[] }) {
+export default function Index({ genders }: { genders: Gender[] }) {
     // Flash message toast
     useFlashMessage();
 
     // Delete dialog state
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const [deleteUserRoleId, setDeleteUserRoleId] = useState<number | null>(null);
+    const [deleteGenderId, setDeleteGenderId] = useState<string | null>(null);
 
-    const handleDeleteClick = (userRoleId: number) => {
-        setDeleteUserRoleId(userRoleId);
+    const handleDeleteClick = (genderId: string) => {
+        setDeleteGenderId(genderId);
         setDeleteDialogOpen(true);
     };
 
     const handleDeleteConfirm = () => {
-        if (deleteUserRoleId !== null) {
-            router.delete(`userRoles/${deleteUserRoleId}`);
+        if (deleteGenderId !== null) {
+            router.delete(`genders/${deleteGenderId}`);
         }
         setDeleteDialogOpen(false);
     };
 
     // Create/Edit dialog state
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [editingUserRole, setEditingUserRole] = useState<UserRole | null>(null);
+    const [editingGender, setEditingGender] = useState<Gender | null>(null);
 
-    const handleEditClick = (userRole: UserRole) => {
-        setEditingUserRole(userRole);
+    const handleEditClick = (gender: Gender) => {
+        setEditingGender(gender);
         setIsDialogOpen(true);
     };
 
     // Add dialog state
     const handleAddClick = () => {
-        setEditingUserRole(null);
+        setEditingGender(null);
         setIsDialogOpen(true);
     };
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="UserRoles" />
+            <Head title="Genders" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">User Roles</h2>
+                            <h2 className="text-lg font-bold">Genders</h2>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
                                         <PlusCircle />
-                                        Add User Role
+                                        Add Gender
                                     </Button>
                                 </DialogTrigger>
-                                <UserRoleDialog
-                                    editingUserRole={editingUserRole}
+                                <GenderDialog
+                                    editingGender={editingGender}
                                     onClose={() => {
                                         setIsDialogOpen(false);
-                                        setEditingUserRole(null);
+                                        setEditingGender(null);
                                     }}
                                 />
                             </Dialog>
                         </CardHeader>
                         <CardContent>
-                            <UserRoleTable userRoles={userRoles} onEdit={handleEditClick} onDelete={handleDeleteClick} />
+                            <GenderTable genders={genders} onEdit={handleEditClick} onDelete={handleDeleteClick} />
                         </CardContent>
                     </Card>
 
