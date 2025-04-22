@@ -59,7 +59,7 @@ export default function GenderTable({ genders, onEdit, onDelete, loadingDeleteId
                     ) : (
                         <TableRow>
                             <TableCell colSpan={3} className="text-muted-foreground pt-6 text-center">
-                                No roles found.
+                                No genders found.
                             </TableCell>
                         </TableRow>
                     )}
