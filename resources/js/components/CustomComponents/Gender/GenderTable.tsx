@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { PencilLine, Trash2 } from 'lucide-react';
+import { Loader2, PencilLine, Trash2 } from 'lucide-react';
 
 interface Gender {
     id: string;
@@ -12,9 +12,10 @@ interface GenderTableProps {
     genders: Gender[];
     onEdit: (gender: Gender) => void;
     onDelete: (id: string) => void;
+    loadingDeleteId: string | null;
 }
 
-export default function GenderTable({ genders, onEdit, onDelete }: GenderTableProps) {
+export default function GenderTable({ genders, onEdit, onDelete, loadingDeleteId }: GenderTableProps) {
     return (
         <div className="rounded-xl border p-4">
             <Table>
@@ -42,8 +43,12 @@ export default function GenderTable({ genders, onEdit, onDelete }: GenderTablePr
                                     </Tooltip>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <Button variant="destructive" onClick={() => onDelete(gender.id)}>
-                                                <Trash2 />
+                                            <Button
+                                                variant="destructive"
+                                                onClick={() => onDelete(gender.id)}
+                                                disabled={loadingDeleteId === gender.id}
+                                            >
+                                                {loadingDeleteId === gender.id ? <Loader2 className="animate-spin" /> : <Trash2 />}
                                             </Button>
                                         </TooltipTrigger>
                                         <TooltipContent>Delete</TooltipContent>

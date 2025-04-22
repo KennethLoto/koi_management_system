@@ -35,11 +35,18 @@ export default function Index({ genders }: { genders: Gender[] }) {
         setDeleteDialogOpen(true);
     };
 
+    const [loadingDeleteId, setLoadingDeleteId] = useState<string | null>(null);
+
     const handleDeleteConfirm = () => {
-        if (deleteGenderId !== null) {
-            router.delete(`genders/${deleteGenderId}`);
+        if (deleteGenderId) {
+            setLoadingDeleteId(deleteGenderId);
+            router.delete(`genders/${deleteGenderId}`, {
+                onFinish: () => {
+                    setLoadingDeleteId(null);
+                    setDeleteDialogOpen(false);
+                },
+            });
         }
-        setDeleteDialogOpen(false);
     };
 
     // Create/Edit dialog state
@@ -85,7 +92,7 @@ export default function Index({ genders }: { genders: Gender[] }) {
                             </Dialog>
                         </CardHeader>
                         <CardContent>
-                            <GenderTable genders={genders} onEdit={handleEditClick} onDelete={handleDeleteClick} />
+                            <GenderTable genders={genders} onEdit={handleEditClick} onDelete={handleDeleteClick} loadingDeleteId={loadingDeleteId} />
                         </CardContent>
                     </Card>
 
