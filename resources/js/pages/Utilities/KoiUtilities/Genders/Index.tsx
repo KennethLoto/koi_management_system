@@ -64,7 +64,10 @@ export default function Index({ genders }: { genders: Gender[] }) {
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Genders</h2>
+                            <div>
+                                <h2 className="text-lg font-bold">Genders</h2>
+                                <p className="text-muted-foreground text-sm">▸ Manage your koi's gender classifications.</p>
+                            </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
