@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { ChevronRight, CloudSnow, FileText, Users, Wrench } from 'lucide-react';
+import { ChevronRight, CloudSnow, FileText, Fish, Users, Wrench } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -53,6 +53,22 @@ export default function Index() {
                                         <div className="flex-1">
                                             <h3 className="text-lg font-medium">Pond Utilities</h3>
                                             <p className="text-muted-foreground mt-1 text-sm">Manage pond locations, actions, and removal reasons.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+
+                            {/* Koi Utilities Card */}
+                            <Link href="/utilities/koiUtilities" className="group">
+                                <Card className="group-hover:border-primary h-full transition-all duration-200 group-hover:shadow-sm">
+                                    <CardContent className="flex h-full flex-col p-6">
+                                        <div className="mb-4 flex items-center justify-between">
+                                            <Fish className="text-primary h-6 w-6" />
+                                            <ChevronRight className="text-muted-foreground h-4 w-4 opacity-0 transition-all duration-200 group-hover:opacity-100" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-medium">Koi Utilities</h3>
+                                            <p className="text-muted-foreground mt-1 text-sm">Manage gender and breed of kois.</p>
                                         </div>
                                     </CardContent>
                                 </Card>

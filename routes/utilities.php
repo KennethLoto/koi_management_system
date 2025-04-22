@@ -17,4 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('utilities/userUtilities', function () {
         return Inertia::render('Utilities/UserUtilities/Index');
     })->name('utilities/userUtilities');
+
+    Route::get('utilities/koiUtilities', function () {
+        return Inertia::render('Utilities/KoiUtilities/Index');
+    })->name('utilities/koiUtilities');
 });
