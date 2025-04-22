@@ -10,61 +10,63 @@ interface WaterLogTableProps {
 
 export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogTableProps) {
     return (
-        <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHead className="w-[50px]">#</TableHead>
-                    <TableHead>pH Level</TableHead>
-                    <TableHead>Temperature</TableHead>
-                    <TableHead>Ammonia Level</TableHead>
-                    <TableHead>Notes</TableHead>
-                    <TableHead>Added By</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Actions</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {waterLogs.length > 0 ? (
-                    waterLogs.map((waterLog, i) => (
-                        <TableRow key={waterLog.id}>
-                            <TableCell>{i + 1}</TableCell>
-                            <TableCell>{waterLog.ph_level}</TableCell>
-                            <TableCell>{waterLog.temperature}</TableCell>
-                            <TableCell>{waterLog.ammonia_level}</TableCell>
-                            <TableCell className="max-w-[300px] text-justify break-words whitespace-pre-wrap">{waterLog.notes ?? '—'}</TableCell>
-                            <TableCell>{waterLog.user?.name ?? 'N/A'}</TableCell>
-                            <TableCell className="font-medium">
-                                {new Date(waterLog.created_at)
-                                    .toLocaleString('en-US', {
-                                        month: 'long',
-                                        day: 'numeric',
-                                        year: 'numeric',
-                                        hour: 'numeric',
-                                        minute: '2-digit',
-                                        hour12: true,
-                                    })
-                                    .replace(' at', ' @')
-                                    .replace('AM', 'am')
-                                    .replace('PM', 'pm')}
-                            </TableCell>
-                            <TableCell>
-                                <Button variant="link" onClick={() => onEdit(waterLog)}>
-                                    Edit
-                                </Button>
-                                <Button variant="link" className="text-red-500" onClick={() => onDelete(waterLog.id)}>
-                                    Delete
-                                </Button>
+        <div className="rounded-xl border p-4">
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="w-[50px]">#</TableHead>
+                        <TableHead>pH Level</TableHead>
+                        <TableHead>Temperature</TableHead>
+                        <TableHead>Ammonia Level</TableHead>
+                        <TableHead>Notes</TableHead>
+                        <TableHead>Added By</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Actions</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {waterLogs.length > 0 ? (
+                        waterLogs.map((waterLog, i) => (
+                            <TableRow key={waterLog.id}>
+                                <TableCell>{i + 1}</TableCell>
+                                <TableCell>{waterLog.ph_level}</TableCell>
+                                <TableCell>{waterLog.temperature}</TableCell>
+                                <TableCell>{waterLog.ammonia_level}</TableCell>
+                                <TableCell className="max-w-[300px] text-justify break-words whitespace-pre-wrap">{waterLog.notes ?? '—'}</TableCell>
+                                <TableCell>{waterLog.user?.name ?? 'N/A'}</TableCell>
+                                <TableCell className="font-medium">
+                                    {new Date(waterLog.created_at)
+                                        .toLocaleString('en-US', {
+                                            month: 'long',
+                                            day: 'numeric',
+                                            year: 'numeric',
+                                            hour: 'numeric',
+                                            minute: '2-digit',
+                                            hour12: true,
+                                        })
+                                        .replace(' at', ' @')
+                                        .replace('AM', 'am')
+                                        .replace('PM', 'pm')}
+                                </TableCell>
+                                <TableCell>
+                                    <Button variant="link" onClick={() => onEdit(waterLog)}>
+                                        Edit
+                                    </Button>
+                                    <Button variant="link" className="text-red-500" onClick={() => onDelete(waterLog.id)}>
+                                        Delete
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={8} className="h-24 text-center">
+                                No water logs available
                             </TableCell>
                         </TableRow>
-                    ))
-                ) : (
-                    <TableRow>
-                        <TableCell colSpan={8} className="h-24 text-center">
-                            No water logs available
-                        </TableCell>
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+                    )}
+                </TableBody>
+            </Table>
+        </div>
     );
 }
