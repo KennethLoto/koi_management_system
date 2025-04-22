@@ -7,6 +7,7 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { Head, router } from '@inertiajs/react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Pond, WaterLog } from '../../../types/waterLogs';
 
@@ -64,8 +65,9 @@ export default function Logs({ pond, waterLogs }: { pond: Pond; waterLogs: Water
 
                                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                     <DialogTrigger asChild>
-                                        <Button variant="link" onClick={handleAddClick}>
-                                            Add
+                                        <Button onClick={handleAddClick}>
+                                            <PlusCircle />
+                                            Add Water Log
                                         </Button>
                                     </DialogTrigger>
                                     <WaterLogDialog
