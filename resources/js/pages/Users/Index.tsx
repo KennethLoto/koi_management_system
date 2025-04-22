@@ -6,22 +6,12 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
+import { User } from '@/types/users';
 import { Head, router } from '@inertiajs/react';
-import { PlusCircle } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs = [{ title: 'User Management', href: '/users' }];
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    role_id: number;
-    role?: {
-        id: number;
-        role: string;
-    };
-}
 
 export default function Index({ users, userRoles }: { users: User[]; userRoles: any[] }) {
     useFlashMessage();
@@ -70,24 +60,29 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container mx-auto p-4">
                     <Card>
-                        <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Users</h2>
-                            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                                <DialogTrigger asChild>
-                                    <Button onClick={handleAddClick}>
-                                        <PlusCircle />
-                                        Add User
-                                    </Button>
-                                </DialogTrigger>
-                                <UserDialog
-                                    editingUser={editingUser}
-                                    userRoles={userRoles}
-                                    onClose={() => {
-                                        setIsDialogOpen(false);
-                                        setEditingUser(null);
-                                    }}
-                                />
-                            </Dialog>
+                        <CardHeader className="flex flex-col items-start gap-2">
+                            <div className="flex w-full items-center justify-between">
+                                <div>
+                                    <h2 className="text-lg font-bold">Users</h2>
+                                    <p className="text-muted-foreground text-sm">▸ Manage your organization's user accounts and permissions.</p>
+                                </div>
+                                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <Button onClick={handleAddClick}>
+                                            <UserPlus />
+                                            Add User
+                                        </Button>
+                                    </DialogTrigger>
+                                    <UserDialog
+                                        editingUser={editingUser}
+                                        userRoles={userRoles}
+                                        onClose={() => {
+                                            setIsDialogOpen(false);
+                                            setEditingUser(null);
+                                        }}
+                                    />
+                                </Dialog>
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <UserTable users={users} onEdit={handleEditClick} onDelete={handleDeleteClick} loadingDeleteId={loadingDeleteId} />

@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
+import { Eye, EyeOff, LoaderCircle } from 'lucide-react';
+import { useState } from 'react';
 
 export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: () => void; userRoles: { id: number; user_role: string }[] }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -12,108 +15,114 @@ export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: ()
         role_id: '',
     });
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         post('/users', {
             onSuccess: () => {
                 reset();
-                onSuccess(); // closes the modal
+                onSuccess();
             },
         });
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                        Name
-                    </Label>
-                    <div className="col-span-3 space-y-1">
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <Card>
+                <CardContent className="space-y-6">
+                    {/* Name Input */}
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
                         <Input
                             id="name"
                             type="text"
                             value={data.name}
+                            placeholder="e.g., Juan Dela Cruz"
                             autoComplete="name"
                             onChange={(e) => setData('name', e.target.value)}
-                            className="w-full"
-                        />
-                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="password" className="text-right">
-                        Password
-                    </Label>
-                    <div className="col-span-3 space-y-1">
-                        <Input
-                            id="password"
-                            type="password"
-                            value={data.password}
-                            autoComplete="new-password"
-                            onChange={(e) => setData('password', e.target.value)}
                             required
-                            className="w-full"
                         />
-                        {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
+                        {errors.name && <p className="text-destructive text-sm">{errors.name}</p>}
                     </div>
-                </div>
 
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="email" className="text-right">
-                        Email
-                    </Label>
-                    <div className="col-span-3 space-y-1">
+                    {/* Email Input */}
+                    <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
                             type="email"
                             value={data.email}
+                            placeholder="e.g., test@example.com"
                             autoComplete="email"
                             onChange={(e) => setData('email', e.target.value)}
                             required
-                            className="w-full"
                         />
-                        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+                        {errors.email && <p className="text-destructive text-sm">{errors.email}</p>}
                     </div>
-                </div>
 
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right">
-                        Role
-                    </Label>
-                    <div className="col-span-3 space-y-1">
-                        <select
-                            id="role"
-                            value={data.role_id}
-                            onChange={(e) => setData('role_id', e.target.value)}
-                            className="text-blackdark:border-gray-600 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm dark:bg-gray-800 dark:text-white"
-                            required
-                        >
-                            <option value="" disabled hidden selected>
-                                Select a role
-                            </option>
-                            {userRoles.map((role) => (
-                                <option key={role.id} value={role.id}>
-                                    {role.user_role}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.role_id && <p className="text-sm text-red-500">{errors.role_id}</p>}
+                    {/* Password Input */}
+                    <div className="space-y-2">
+                        <Label htmlFor="password">Password</Label>
+                        <div className="relative">
+                            <Input
+                                id="password"
+                                type={showPassword ? 'text' : 'password'}
+                                value={data.password}
+                                autoComplete="new-password"
+                                onChange={(e) => setData('password', e.target.value)}
+                                required
+                                className="pr-10"
+                            />
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                className="absolute top-0 right-0 h-full px-3 py-2 hover:bg-transparent"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? (
+                                    <EyeOff className="text-muted-foreground h-4 w-4" />
+                                ) : (
+                                    <Eye className="text-muted-foreground h-4 w-4" />
+                                )}
+                                <span className="sr-only">{showPassword ? 'Hide password' : 'Show password'}</span>
+                            </Button>
+                        </div>
+                        {errors.password && <p className="text-destructive text-sm">{errors.password}</p>}
                     </div>
-                </div>
+
+                    {/* Role Select */}
+                    <div className="space-y-2">
+                        <Label htmlFor="role_id">Role</Label>
+                        <Select value={data.role_id} onValueChange={(value) => setData('role_id', value)} required>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select user role" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {userRoles.map((role) => (
+                                    <SelectItem key={role.id} value={role.id.toString()} className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                                        {role.user_role}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        {errors.role_id && <p className="text-destructive text-sm">{errors.role_id}</p>}
+                    </div>
+                </CardContent>
+            </Card>
+
+            <div className="flex justify-end">
+                <Button type="submit" disabled={processing}>
+                    {processing ? (
+                        <>
+                            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                            Adding...
+                        </>
+                    ) : (
+                        'Add'
+                    )}
+                </Button>
             </div>
-
-            <Button type="submit" disabled={processing} className="float-end">
-                {processing ? (
-                    <>
-                        <LoaderCircle className="h-4 w-4 animate-spin" />
-                        Adding...
-                    </>
-                ) : (
-                    'Add'
-                )}
-            </Button>
         </form>
     );
 }

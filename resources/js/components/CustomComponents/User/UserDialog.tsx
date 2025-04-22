@@ -1,13 +1,7 @@
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { User } from '@/types/users';
 import CreateUserForm from '../../../pages/Users/Create';
 import EditUserForm from '../../../pages/Users/Edit';
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    role_id: number;
-}
 
 interface Props {
     editingUser: User | null;
@@ -22,8 +16,8 @@ export default function UserDialog({ editingUser, userRoles, onClose }: Props) {
                 <DialogTitle>{editingUser ? 'Edit' : 'Add'} User</DialogTitle>
                 <DialogDescription>
                     {editingUser
-                        ? 'Update the user information below. Click update when you’re done.'
-                        : 'Fill in the form to add a new user. Click add to proceed.'}
+                        ? '▸ Update the user details below and click "Update" when finished.'
+                        : '▸ Fill in the form to add a new user and click "Add" to proceed.'}
                 </DialogDescription>
             </DialogHeader>
             {editingUser ? (
