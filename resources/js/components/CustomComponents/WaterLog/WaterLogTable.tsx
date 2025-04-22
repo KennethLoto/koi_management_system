@@ -49,7 +49,7 @@ export default function WaterLogTable({ waterLogs, onEdit, onDelete }: WaterLogT
                                         .replace('AM', 'am')
                                         .replace('PM', 'pm')}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className="flex gap-2">
                                     <Button variant="secondary" onClick={() => onEdit(waterLog)}>
                                         <PencilLine />
                                     </Button>
