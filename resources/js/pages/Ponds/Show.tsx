@@ -98,7 +98,7 @@ export default function Show({ pond }: { pond: Pond }) {
                             <CardHeader>
                                 <div className="flex flex-col gap-1">
                                     <CardTitle className="text-base font-semibold">Latest Logs</CardTitle>
-                                    <p className="text-muted-foreground text-xs">Most recent water and maintenance entries</p>
+                                    <p className="text-muted-foreground text-xs">▸ Most recent water and maintenance entries</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
