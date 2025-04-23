@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { ChevronRight, CornerDownRight, Dna, VenusAndMars } from 'lucide-react';
+import { ChevronRight, CornerDownRight, Dna, HeartPulse, VenusAndMars } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -57,6 +57,22 @@ export default function Index() {
                                         <div className="flex-1">
                                             <h3 className="text-lg font-medium">Breed</h3>
                                             <p className="text-muted-foreground mt-1 text-sm">‣ Manage kois breed.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+
+                            {/* healthStatus */}
+                            <Link href="koiUtilities/healthStatuses" className="group">
+                                <Card className="group-hover:border-primary h-full transition-all duration-200 hover:shadow-sm">
+                                    <CardContent className="flex h-full flex-col p-6">
+                                        <div className="mb-4 flex items-center justify-between">
+                                            <HeartPulse className="text-primary h-6 w-6" />
+                                            <ChevronRight className="text-muted-foreground h-4 w-4 opacity-0 transition-all duration-200 group-hover:opacity-100" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-medium">Health Status</h3>
+                                            <p className="text-muted-foreground mt-1 text-sm">‣ Manage kois health status.</p>
                                         </div>
                                     </CardContent>
                                 </Card>
