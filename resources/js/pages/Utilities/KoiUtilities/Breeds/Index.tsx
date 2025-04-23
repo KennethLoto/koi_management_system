@@ -73,7 +73,7 @@ export default function Index({ breeds }: { breeds: Breed[] }) {
                         <CardHeader className="flex-row items-center justify-between">
                             <div>
                                 <h2 className="text-lg font-bold">Breeds</h2>
-                                <p className="text-muted-foreground text-sm">▸ Manage your koi's breeds.</p>
+                                <p className="text-muted-foreground text-sm">▸ List of available koi breeds.</p>
                             </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
