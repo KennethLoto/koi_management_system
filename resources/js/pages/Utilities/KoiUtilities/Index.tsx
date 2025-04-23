@@ -56,9 +56,7 @@ export default function Index() {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-lg font-medium">Breed</h3>
-                                            <p className="text-muted-foreground mt-1 text-sm">
-                                                ‣ Manage and categorize your koi based on their breed types.
-                                            </p>
+                                            <p className="text-muted-foreground mt-1 text-sm">‣ Define koi breed types for selection.</p>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -74,7 +72,7 @@ export default function Index() {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-lg font-medium">Health Status</h3>
-                                            <p className="text-muted-foreground mt-1 text-sm">‣ Manage kois health status.</p>
+                                            <p className="text-muted-foreground mt-1 text-sm">‣ Add health status options for koi entries.</p>
                                         </div>
                                     </CardContent>
                                 </Card>
