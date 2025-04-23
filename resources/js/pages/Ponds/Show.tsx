@@ -67,7 +67,7 @@ export default function Show({ pond }: { pond: Pond }) {
                             <CardHeader>
                                 <div className="flex flex-col gap-1">
                                     <CardTitle className="text-base font-semibold">Pond Details</CardTitle>
-                                    <p className="text-muted-foreground text-xs">Basic information about this pond</p>
+                                    <p className="text-muted-foreground text-xs">▸ Basic information about this pond</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
