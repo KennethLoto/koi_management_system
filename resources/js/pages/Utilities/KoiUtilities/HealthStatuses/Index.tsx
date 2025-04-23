@@ -73,7 +73,7 @@ export default function Index({ healthStatuses }: { healthStatuses: HealthStatus
                         <CardHeader className="flex-row items-center justify-between">
                             <div>
                                 <h2 className="text-lg font-bold">Health Statuses</h2>
-                                <p className="text-muted-foreground text-sm">▸ Manage your koi's health status.</p>
+                                <p className="text-muted-foreground text-sm">▸ List of defined health statuses for koi.</p>
                             </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
