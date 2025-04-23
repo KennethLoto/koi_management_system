@@ -47,7 +47,7 @@ export default function EditGenderForm({ gender, onSuccess }: { gender: any; onS
                 <Button type="submit" disabled={processing}>
                     {processing ? (
                         <>
-                            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                            <LoaderCircle className="animate-spin" />
                             Updating...
                         </>
                     ) : (
