@@ -44,7 +44,7 @@ export default function Show({ pond }: { pond: Pond }) {
                         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                             <div className="flex flex-col gap-1">
                                 <CardTitle className="text-lg font-semibold">Pond Details</CardTitle>
-                                <p className="text-muted-foreground text-sm">Pond ID: {pond.pond_id}</p>
+                                <p className="text-muted-foreground text-sm">▸ Pond ID: {pond.pond_id}</p>
                             </div>
                             <div className="flex gap-2">
                                 <Link href={`/pondsInfo/waterLogs/${pond.id}`} as="button">
