@@ -67,7 +67,10 @@ export default function Show({ subAction }: { subAction: Action }) {
                 <div className="container mx-auto space-y-4 p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Sub Actions</h2>
+                            <div>
+                                <h2 className="text-lg font-bold">Sub Actions</h2>
+                                <p className="text-muted-foreground text-sm">▸ Manage detailed sub-tasks for maintenance actions.</p>
+                            </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
