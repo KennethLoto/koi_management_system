@@ -64,7 +64,10 @@ export default function Index({ ponds, locations }: { ponds: Pond[]; locations: 
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">Ponds</h2>
+                            <div>
+                                <h2 className="text-lg font-bold">Ponds</h2>
+                                <p className="text-muted-foreground text-sm">▸ Manage pond details, and associated water/maintenance logs.</p>
+                            </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
