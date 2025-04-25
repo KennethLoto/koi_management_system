@@ -64,7 +64,9 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                             <div className="flex w-full items-center justify-between">
                                 <div>
                                     <h2 className="text-lg font-bold">Users</h2>
-                                    <p className="text-muted-foreground text-sm">▸ Manage your organization's user accounts and permissions.</p>
+                                    <p className="text-muted-foreground text-sm">
+                                        ▸ Manage all user accounts with access to your koi farming operations and data.
+                                    </p>
                                 </div>
                                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                     <DialogTrigger asChild>
