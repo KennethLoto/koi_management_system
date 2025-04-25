@@ -115,7 +115,7 @@ export default function CreateUserForm({ onSuccess, userRoles }: { onSuccess: ()
                 <Button type="submit" disabled={processing}>
                     {processing ? (
                         <>
-                            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                            <LoaderCircle className="animate-spin" />
                             Adding...
                         </>
                     ) : (
