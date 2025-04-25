@@ -64,7 +64,12 @@ export default function Index({ userRoles }: { userRoles: UserRole[] }) {
                 <div className="container mx-auto p-4">
                     <Card>
                         <CardHeader className="flex-row items-center justify-between">
-                            <h2 className="text-lg font-bold">User Roles</h2>
+                            <div>
+                                <h2 className="text-lg font-bold">User Roles</h2>
+                                <p className="text-muted-foreground text-sm">
+                                    ▸ Manage system roles and their permissions (e.g., Super Admin, Koi Keeper, Veterinarian).
+                                </p>
+                            </div>
                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button onClick={handleAddClick}>
