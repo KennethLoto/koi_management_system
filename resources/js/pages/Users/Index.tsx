@@ -63,7 +63,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                         <CardHeader className="flex flex-col items-start gap-2">
                             <div className="flex w-full items-center justify-between">
                                 <div>
-                                    <h2 className="text-lg font-bold">Users</h2>
+                                    <h2 className="text-lg font-bold">Users </h2>
                                     <p className="text-muted-foreground text-sm">
                                         ▸ Manage all user accounts with access to your koi farming operations and data.
                                     </p>
