@@ -8,7 +8,7 @@ import useFlashMessage from '@/hooks/useFlashMessage';
 import AppLayout from '@/layouts/app-layout';
 import { User } from '@/types/users';
 import { Head, router } from '@inertiajs/react';
-import { UserPlus } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const breadcrumbs = [{ title: 'User Management', href: '/users' }];
@@ -71,7 +71,7 @@ export default function Index({ users, userRoles }: { users: User[]; userRoles: 
                                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                     <DialogTrigger asChild>
                                         <Button onClick={handleAddClick}>
-                                            <UserPlus />
+                                            <PlusCircle />
                                             Add User
                                         </Button>
                                     </DialogTrigger>
